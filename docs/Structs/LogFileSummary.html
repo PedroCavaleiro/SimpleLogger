@@ -1,0 +1,329 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>LogFileSummary Structure Reference</title>
+    <link rel="stylesheet" type="text/css" href="../css/jazzy.css" />
+    <link rel="stylesheet" type="text/css" href="../css/highlight.css" />
+    <meta charset="utf-8">
+    <script src="../js/jquery.min.js" defer></script>
+    <script src="../js/jazzy.js" defer></script>
+    
+    <script src="../js/lunr.min.js" defer></script>
+    <script src="../js/typeahead.jquery.js" defer></script>
+    <script src="../js/jazzy.search.js" defer></script>
+  </head>
+  <body>
+
+    <a name="//apple_ref/swift/Struct/LogFileSummary" class="dashAnchor"></a>
+
+    <a title="LogFileSummary Structure Reference"></a>
+
+    <header class="header">
+      <p class="header-col header-col--primary">
+        <a class="header-link" href="../index.html">
+           Docs
+        </a>
+         (100% documented)
+      </p>
+    
+      <div class="header-col--secondary">
+        <form role="search" action="../search.json">
+          <input type="text" placeholder="Search documentation" data-typeahead>
+        </form>
+      </div>
+    
+    
+    </header>
+
+    <p class="breadcrumbs">
+      <a class="breadcrumb" href="../index.html">Index</a>
+      <img class="carat" src="../img/carat.png" alt=""/>
+      <a class="breadcrumb" href="../Structs.html">Structures</a>
+      <img class="carat" src="../img/carat.png" alt=""/>
+      SimpleLogger.LogFileSummary Structure Reference
+    </p>
+
+    <div class="content-wrapper">
+      <nav class="navigation">
+        <ul class="nav-groups">
+          <li class="nav-group-name">
+            <a class="nav-group-name-link" href="../Classes.html">Classes</a>
+            <ul class="nav-group-tasks">
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../Classes/SimpleLogger.html">SimpleLogger</a>
+              </li>
+            </ul>
+          </li>
+          <li class="nav-group-name">
+            <a class="nav-group-name-link" href="../Enums.html">Enumerations</a>
+            <ul class="nav-group-tasks">
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../Enums/LogLevel.html">LogLevel</a>
+              </li>
+            </ul>
+          </li>
+          <li class="nav-group-name">
+            <a class="nav-group-name-link" href="../Structs.html">Structures</a>
+            <ul class="nav-group-tasks">
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../Structs/LogEntry.html">LogEntry</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../Structs/LogFileSummary.html">LogFileSummary</a>
+              </li>
+            </ul>
+          </li>
+        </ul>
+      </nav>
+      <article class="main-content">
+
+        <section class="section">
+          <div class="section-content top-matter">
+            <h1>LogFileSummary</h1>
+              <div class="declaration">
+                <div class="language">
+                  
+                  <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">struct</span> <span class="kt">LogFileSummary</span></code></pre>
+
+                </div>
+              </div>
+            <p>Log file summary model providing comprehensive log file analysis and statistical information.</p>
+
+<p><code>LogFileSummary</code> represents comprehensive log file metadata with statistical analysis, file
+information, and log level distribution tracking. It provides essential log file management,
+analysis capabilities, and monitoring coordination for comprehensive logging system administration
+and log file analysis workflows.</p>
+<h2 id='features' class='heading'>Features</h2>
+
+<ul>
+<li><strong>File Metadata</strong>: Complete file information including name, size, and modification tracking</li>
+<li><strong>Statistical Analysis</strong>: Log level distribution and count analysis for log file insights</li>
+<li><strong>File Management</strong>: Log file organization and metadata tracking for administration</li>
+<li><strong>Analysis Coordination</strong>: Log file analysis capabilities and statistical monitoring</li>
+<li><strong>System Monitoring</strong>: Log file health monitoring and analysis coordination</li>
+<li><strong>Administrative Support</strong>: Log file management and analysis for system administration</li>
+</ul>
+<h2 id='usage-context' class='heading'>Usage Context</h2>
+
+<p>This model is used throughout the application for log file management, analysis coordination,
+and logging system administration. It provides essential log file metadata for monitoring
+interfaces and integrates with logging systems for comprehensive log file analysis and management.</p>
+<h2 id='environment-requirements' class='heading'>Environment Requirements</h2>
+<div class="aside aside-requires">
+    <p class="aside-title">Requires</p>
+    Requires Foundation framework for core data structures and file system integration
+
+</div><ul>
+<li>Integrates with Logging system for log level classification and analysis</li>
+<li>Compatible with file system APIs for file metadata and size tracking</li>
+<li>Supports log file analysis and administrative management workflows</li>
+</ul>
+<h2 id='properties' class='heading'>Properties</h2>
+
+<ul>
+<li><code>fileName</code>: String containing log file name for identification and management</li>
+<li><code>size</code>: Integer containing log file size in bytes for file management analysis</li>
+<li><code>lastModified</code>: Date containing file modification timestamp for tracking coordination</li>
+<li><code>levelCounts</code>: Dictionary containing log level distribution for statistical analysis</li>
+</ul>
+<h2 id='initialization-parameters' class='heading'>Initialization Parameters</h2>
+
+              <div>
+                <h4>Parameters</h4>
+                <table class="graybox">
+                  <tbody>
+                      <tr>
+                        <td>
+                          <code>
+                          <em>fileName</em>
+                          </code>
+                        </td>
+                        <td>
+                          <div>
+                            <p>String containing log file name for identification and management</p>
+                          </div>
+                        </td>
+                      </tr>
+                      <tr>
+                        <td>
+                          <code>
+                          <em>size</em>
+                          </code>
+                        </td>
+                        <td>
+                          <div>
+                            <p>Integer containing log file size in bytes for file analysis</p>
+                          </div>
+                        </td>
+                      </tr>
+                      <tr>
+                        <td>
+                          <code>
+                          <em>lastModified</em>
+                          </code>
+                        </td>
+                        <td>
+                          <div>
+                            <p>Date containing file modification timestamp for tracking</p>
+                          </div>
+                        </td>
+                      </tr>
+                      <tr>
+                        <td>
+                          <code>
+                          <em>levelCounts</em>
+                          </code>
+                        </td>
+                        <td>
+                          <div>
+                            <p>Dictionary containing log level distribution for statistical coordination</p>
+                          </div>
+                        </td>
+                      </tr>
+                  </tbody>
+                </table>
+              </div>
+          </div>
+        </section>
+
+        <section class="section">
+          <div class="section-content">
+            <div class="task-group">
+              <ul class="item-container">
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:12SimpleLogger14LogFileSummaryV8fileNameSSvp"></a>
+                    <a name="//apple_ref/swift/Property/fileName" class="dashAnchor"></a>
+                    <a class="token" href="#/s:12SimpleLogger14LogFileSummaryV8fileNameSSvp">fileName</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Log file name providing identification and file management coordination.</p>
+
+<p>This string property contains the log file name for file identification, enabling
+log file management, organization, and administrative coordination
+for comprehensive logging system administration and file tracking workflows.</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="k">let</span> <span class="nv">fileName</span><span class="p">:</span> <span class="kt">String</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:12SimpleLogger14LogFileSummaryV4sizeSivp"></a>
+                    <a name="//apple_ref/swift/Property/size" class="dashAnchor"></a>
+                    <a class="token" href="#/s:12SimpleLogger14LogFileSummaryV4sizeSivp">size</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Log file size providing file management analysis and storage coordination.</p>
+
+<p>This integer property contains the log file size in bytes for file management analysis,
+enabling storage monitoring, file size tracking, and administrative coordination
+for comprehensive log file management and system administration workflows.</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="k">let</span> <span class="nv">size</span><span class="p">:</span> <span class="kt">Int</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:12SimpleLogger14LogFileSummaryV12lastModified10Foundation4DateVvp"></a>
+                    <a name="//apple_ref/swift/Property/lastModified" class="dashAnchor"></a>
+                    <a class="token" href="#/s:12SimpleLogger14LogFileSummaryV12lastModified10Foundation4DateVvp">lastModified</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>File modification timestamp providing file tracking and temporal coordination.</p>
+
+<p>This Date property contains the last modification timestamp for file tracking,
+enabling temporal coordination, modification monitoring, and file management
+analysis for comprehensive logging system administration and tracking workflows.</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="k">let</span> <span class="nv">lastModified</span><span class="p">:</span> <span class="kt">Date</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:12SimpleLogger14LogFileSummaryV11levelCountsSDyAA0C5LevelOSiGvp"></a>
+                    <a name="//apple_ref/swift/Property/levelCounts" class="dashAnchor"></a>
+                    <a class="token" href="#/s:12SimpleLogger14LogFileSummaryV11levelCountsSDyAA0C5LevelOSiGvp">levelCounts</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Log level distribution providing statistical analysis and log file insights.</p>
+
+<p>This dictionary property contains log level counts for statistical analysis and insights,
+enabling log level distribution tracking, analysis coordination, and log file
+monitoring for comprehensive logging system analysis and administrative workflows.</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="k">let</span> <span class="nv">levelCounts</span><span class="p">:</span> <span class="p">[</span><span class="kt"><a href="../Enums/LogLevel.html">LogLevel</a></span> <span class="p">:</span> <span class="kt">Int</span><span class="p">]</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+              </ul>
+            </div>
+          </div>
+        </section>
+
+      </article>
+    </div>
+    <section class="footer">
+      <p>&copy; 2025 <a class="link" href="" target="_blank" rel="external noopener"></a>. All rights reserved. (Last updated: 2025-09-11)</p>
+      <p>Generated by <a class="link" href="https://github.com/realm/jazzy" target="_blank" rel="external noopener">jazzy ♪♫ v0.15.3</a>, a <a class="link" href="https://realm.io" target="_blank" rel="external noopener">Realm</a> project.</p>
+    </section>
+  </body>
+</html>

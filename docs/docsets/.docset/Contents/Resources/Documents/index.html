@@ -1,0 +1,282 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>Index  Reference</title>
+    <link rel="stylesheet" type="text/css" href="css/jazzy.css" />
+    <link rel="stylesheet" type="text/css" href="css/highlight.css" />
+    <meta charset="utf-8">
+    <script src="js/jquery.min.js" defer></script>
+    <script src="js/jazzy.js" defer></script>
+    
+    <script src="js/lunr.min.js" defer></script>
+    <script src="js/typeahead.jquery.js" defer></script>
+    <script src="js/jazzy.search.js" defer></script>
+  </head>
+  <body>
+
+
+    <a title="Index  Reference"></a>
+
+    <header class="header">
+      <p class="header-col header-col--primary">
+        <a class="header-link" href="index.html">
+           Docs
+        </a>
+         (100% documented)
+      </p>
+    
+      <div class="header-col--secondary">
+        <form role="search" action="search.json">
+          <input type="text" placeholder="Search documentation" data-typeahead>
+        </form>
+      </div>
+    
+    
+    </header>
+
+    <p class="breadcrumbs">
+      <a class="breadcrumb" href="index.html">Index</a>
+    </p>
+
+    <div class="content-wrapper">
+      <nav class="navigation">
+        <ul class="nav-groups">
+          <li class="nav-group-name">
+            <a class="nav-group-name-link" href="Classes.html">Classes</a>
+            <ul class="nav-group-tasks">
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="Classes/SimpleLogger.html">SimpleLogger</a>
+              </li>
+            </ul>
+          </li>
+          <li class="nav-group-name">
+            <a class="nav-group-name-link" href="Enums.html">Enumerations</a>
+            <ul class="nav-group-tasks">
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="Enums/LogLevel.html">LogLevel</a>
+              </li>
+            </ul>
+          </li>
+          <li class="nav-group-name">
+            <a class="nav-group-name-link" href="Structs.html">Structures</a>
+            <ul class="nav-group-tasks">
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="Structs/LogEntry.html">LogEntry</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="Structs/LogFileSummary.html">LogFileSummary</a>
+              </li>
+            </ul>
+          </li>
+        </ul>
+      </nav>
+      <article class="main-content">
+
+        <section class="section">
+          <div class="section-content top-matter">
+            
+            <h1 id='simplelogger' class='heading'>SimpleLogger</h1>
+
+<p>A comprehensive, lightweight Swift logging utility designed for iOS applications with file-based persistence, structured logging, and automatic log management.</p>
+<h2 id='features' class='heading'>Features</h2>
+
+<ul>
+<li>🗂️ <strong>File-Based Persistence</strong>: Automatic JSON-based log storage with organized file structure</li>
+<li>📊 <strong>Structured Logging</strong>: Comprehensive log entries with source tracking (file, function, line)</li>
+<li>🔍 <strong>Five-Tier Severity Levels</strong>: Debug, Info, Warning, Error, and Critical classifications</li>
+<li>📦 <strong>Object Logging</strong>: Built-in support for logging <code>Codable</code> objects alongside messages</li>
+<li>🔄 <strong>Automatic Log Rotation</strong>: Intelligent file size management (10MB limit) with oldest entry cleanup</li>
+<li>📸 <strong>Environment Snapshots</strong>: Capture complete application state for debugging</li>
+<li>📈 <strong>Log Analytics</strong>: Statistical summaries and level-based counting for log files</li>
+<li>🧵 <strong>Thread-Safe</strong>: Main actor isolation ensures safe concurrent access</li>
+<li>🧹 <strong>Log Management</strong>: Individual file deletion and bulk cleanup operations</li>
+</ul>
+<h2 id='installation' class='heading'>Installation</h2>
+<h3 id='swift-package-manager' class='heading'>Swift Package Manager</h3>
+
+<p>Add SimpleLogger to your project through Xcode:</p>
+
+<ol>
+<li>File → Add Package Dependencies</li>
+<li>Enter the repository URL: <code>https://github.com/PedroCavaleiro/SimpleLogger</code></li>
+<li>Click Add Package</li>
+</ol>
+
+<p>Or add it to your <code>Package.swift</code> file:</p>
+<pre class="highlight swift"><code><span class="nv">dependencies</span><span class="p">:</span> <span class="p">[</span>
+    <span class="o">.</span><span class="nf">package</span><span class="p">(</span><span class="nv">url</span><span class="p">:</span> <span class="s">"https://github.com/PedroCavaleiro/SimpleLogger"</span><span class="p">,</span> <span class="nv">from</span><span class="p">:</span> <span class="s">"1.0.0"</span><span class="p">)</span>
+<span class="p">]</span>
+</code></pre>
+<h2 id='quick-start' class='heading'>Quick Start</h2>
+<pre class="highlight swift"><code><span class="kd">import</span> <span class="kt">SimpleLogger</span>
+
+<span class="c1">// Simple text logging</span>
+<span class="kt">SimpleLogger</span><span class="o">.</span><span class="nf">log</span><span class="p">(</span><span class="s">"Application started"</span><span class="p">)</span>
+
+<span class="c1">// Logging with custom severity level</span>
+<span class="kt">SimpleLogger</span><span class="o">.</span><span class="nf">log</span><span class="p">(</span><span class="s">"User authentication failed"</span><span class="p">,</span> <span class="nv">level</span><span class="p">:</span> <span class="o">.</span><span class="n">error</span><span class="p">)</span>
+
+<span class="c1">// Logging with structured data</span>
+<span class="k">let</span> <span class="nv">user</span> <span class="o">=</span> <span class="kt">User</span><span class="p">(</span><span class="nv">id</span><span class="p">:</span> <span class="mi">123</span><span class="p">,</span> <span class="nv">name</span><span class="p">:</span> <span class="s">"John Doe"</span><span class="p">)</span>
+<span class="kt">SimpleLogger</span><span class="o">.</span><span class="nf">log</span><span class="p">(</span><span class="s">"User logged in"</span><span class="p">,</span> <span class="n">user</span><span class="p">,</span> <span class="nv">level</span><span class="p">:</span> <span class="o">.</span><span class="n">info</span><span class="p">)</span>
+
+<span class="c1">// Environment snapshot for debugging</span>
+<span class="kt">SimpleLogger</span><span class="o">.</span><span class="nf">snapshot</span><span class="p">(</span><span class="n">appState</span><span class="p">,</span> <span class="n">settingsManager</span><span class="p">,</span> <span class="n">networkConfig</span><span class="p">)</span>
+</code></pre>
+<h2 id='usage' class='heading'>Usage</h2>
+<h3 id='basic-logging' class='heading'>Basic Logging</h3>
+<pre class="highlight swift"><code><span class="c1">// Different severity levels</span>
+<span class="kt">SimpleLogger</span><span class="o">.</span><span class="nf">log</span><span class="p">(</span><span class="s">"Debug information"</span><span class="p">,</span> <span class="nv">level</span><span class="p">:</span> <span class="o">.</span><span class="n">debug</span><span class="p">)</span>
+<span class="kt">SimpleLogger</span><span class="o">.</span><span class="nf">log</span><span class="p">(</span><span class="s">"General information"</span><span class="p">,</span> <span class="nv">level</span><span class="p">:</span> <span class="o">.</span><span class="n">info</span><span class="p">)</span>
+<span class="kt">SimpleLogger</span><span class="o">.</span><span class="nf">log</span><span class="p">(</span><span class="s">"Potential issue detected"</span><span class="p">,</span> <span class="nv">level</span><span class="p">:</span> <span class="o">.</span><span class="n">warning</span><span class="p">)</span>
+<span class="kt">SimpleLogger</span><span class="o">.</span><span class="nf">log</span><span class="p">(</span><span class="s">"Error occurred"</span><span class="p">,</span> <span class="nv">level</span><span class="p">:</span> <span class="o">.</span><span class="n">error</span><span class="p">)</span>
+<span class="kt">SimpleLogger</span><span class="o">.</span><span class="nf">log</span><span class="p">(</span><span class="s">"Critical system failure"</span><span class="p">,</span> <span class="nv">level</span><span class="p">:</span> <span class="o">.</span><span class="n">critical</span><span class="p">)</span>
+</code></pre>
+<h3 id='structured-object-logging' class='heading'>Structured Object Logging</h3>
+<pre class="highlight swift"><code><span class="kd">struct</span> <span class="kt">APIResponse</span><span class="p">:</span> <span class="kt">Codable</span> <span class="p">{</span>
+    <span class="k">let</span> <span class="nv">status</span><span class="p">:</span> <span class="kt">Int</span>
+    <span class="k">let</span> <span class="nv">message</span><span class="p">:</span> <span class="kt">String</span>
+<span class="p">}</span>
+
+<span class="k">let</span> <span class="nv">response</span> <span class="o">=</span> <span class="kt">APIResponse</span><span class="p">(</span><span class="nv">status</span><span class="p">:</span> <span class="mi">200</span><span class="p">,</span> <span class="nv">message</span><span class="p">:</span> <span class="s">"Success"</span><span class="p">)</span>
+<span class="kt">SimpleLogger</span><span class="o">.</span><span class="nf">log</span><span class="p">(</span><span class="s">"API call completed"</span><span class="p">,</span> <span class="n">response</span><span class="p">,</span> <span class="nv">level</span><span class="p">:</span> <span class="o">.</span><span class="n">info</span><span class="p">)</span>
+</code></pre>
+<h3 id='environment-snapshots' class='heading'>Environment Snapshots</h3>
+
+<p>Capture comprehensive application state for debugging:</p>
+<pre class="highlight swift"><code><span class="kt">SimpleLogger</span><span class="o">.</span><span class="nf">snapshot</span><span class="p">(</span>
+    <span class="n">applicationState</span><span class="p">,</span>
+    <span class="n">userPreferences</span><span class="p">,</span>
+    <span class="n">networkConfiguration</span><span class="p">,</span>
+    <span class="n">databaseState</span>
+<span class="p">)</span>
+</code></pre>
+<h3 id='log-file-management' class='heading'>Log File Management</h3>
+<pre class="highlight swift"><code><span class="c1">// Get log file statistics</span>
+<span class="k">let</span> <span class="nv">stats</span> <span class="o">=</span> <span class="kt">SimpleLogger</span><span class="o">.</span><span class="nf">logFileStats</span><span class="p">()</span>
+<span class="nf">print</span><span class="p">(</span><span class="s">"Total files: </span><span class="se">\(</span><span class="n">stats</span><span class="o">.</span><span class="n">fileCount</span><span class="se">)</span><span class="s">, Total size: </span><span class="se">\(</span><span class="n">stats</span><span class="o">.</span><span class="n">totalSize</span><span class="se">)</span><span class="s"> bytes"</span><span class="p">)</span>
+
+<span class="c1">// List all log files with analysis</span>
+<span class="k">let</span> <span class="nv">summaries</span> <span class="o">=</span> <span class="kt">SimpleLogger</span><span class="o">.</span><span class="nf">listLogFiles</span><span class="p">()</span>
+<span class="k">for</span> <span class="n">summary</span> <span class="k">in</span> <span class="n">summaries</span> <span class="p">{</span>
+    <span class="nf">print</span><span class="p">(</span><span class="s">"File: </span><span class="se">\(</span><span class="n">summary</span><span class="o">.</span><span class="n">fileName</span><span class="se">)</span><span class="s">"</span><span class="p">)</span>
+    <span class="nf">print</span><span class="p">(</span><span class="s">"Size: </span><span class="se">\(</span><span class="n">summary</span><span class="o">.</span><span class="n">size</span><span class="se">)</span><span class="s"> bytes"</span><span class="p">)</span>
+    <span class="nf">print</span><span class="p">(</span><span class="s">"Last modified: </span><span class="se">\(</span><span class="n">summary</span><span class="o">.</span><span class="n">lastModified</span><span class="se">)</span><span class="s">"</span><span class="p">)</span>
+    <span class="nf">print</span><span class="p">(</span><span class="s">"Log levels: </span><span class="se">\(</span><span class="n">summary</span><span class="o">.</span><span class="n">levelCounts</span><span class="se">)</span><span class="s">"</span><span class="p">)</span>
+<span class="p">}</span>
+
+<span class="c1">// Load specific log file entries</span>
+<span class="k">let</span> <span class="nv">entries</span> <span class="o">=</span> <span class="kt">SimpleLogger</span><span class="o">.</span><span class="nf">loadLogEntries</span><span class="p">(</span><span class="nv">fromFileNamed</span><span class="p">:</span> <span class="s">"ViewController"</span><span class="p">)</span>
+
+<span class="c1">// Clean up logs</span>
+<span class="kt">SimpleLogger</span><span class="o">.</span><span class="nf">deleteLogFile</span><span class="p">(</span><span class="nv">named</span><span class="p">:</span> <span class="s">"OldController"</span><span class="p">)</span>
+<span class="kt">SimpleLogger</span><span class="o">.</span><span class="nf">clearLogs</span><span class="p">()</span> <span class="c1">// Delete all log files</span>
+</code></pre>
+<h2 id='log-levels' class='heading'>Log Levels</h2>
+
+<table><thead>
+<tr>
+<th>Level</th>
+<th>Description</th>
+<th>Use Case</th>
+</tr>
+</thead><tbody>
+<tr>
+<td><code>debug</code></td>
+<td>Detailed development information</td>
+<td>Development debugging, verbose tracing</td>
+</tr>
+<tr>
+<td><code>info</code></td>
+<td>General application flow</td>
+<td>Normal application operations, milestones</td>
+</tr>
+<tr>
+<td><code>warning</code></td>
+<td>Potentially harmful situations</td>
+<td>Deprecated API usage, configuration issues</td>
+</tr>
+<tr>
+<td><code>error</code></td>
+<td>Error conditions affecting functionality</td>
+<td>Recoverable errors, API failures</td>
+</tr>
+<tr>
+<td><code>critical</code></td>
+<td>Severe errors that may cause failure</td>
+<td>System crashes, unrecoverable errors</td>
+</tr>
+</tbody></table>
+<h2 id='log-file-organization' class='heading'>Log File Organization</h2>
+
+<ul>
+<li><strong>Automatic Organization</strong>: Logs are organized by source file (e.g., <code>ViewController.swift.json</code>)</li>
+<li><strong>JSON Format</strong>: Structured JSON storage for easy parsing and analysis</li>
+<li><strong>Size Management</strong>: Automatic rotation when files exceed 10MB</li>
+<li><strong>Document Directory</strong>: Stored in app&rsquo;s document directory under <code>logging/</code> folder</li>
+</ul>
+<h2 id='type-aliases' class='heading'>Type Aliases</h2>
+
+<p>For cleaner code, consider creating a type alias:</p>
+<pre class="highlight swift"><code><span class="kd">typealias</span> <span class="kt">Logger</span> <span class="o">=</span> <span class="kt">SimpleLogger</span>
+
+<span class="c1">// Now you can use:</span>
+<span class="kt">Logger</span><span class="o">.</span><span class="nf">log</span><span class="p">(</span><span class="s">"Much cleaner!"</span><span class="p">,</span> <span class="nv">level</span><span class="p">:</span> <span class="o">.</span><span class="n">info</span><span class="p">)</span>
+</code></pre>
+<h2 id='log-entry-structure' class='heading'>Log Entry Structure</h2>
+
+<p>Each log entry contains:</p>
+<pre class="highlight swift"><code><span class="p">{</span>
+    <span class="s">"message"</span><span class="p">:</span> <span class="s">"Your log message"</span><span class="p">,</span>
+    <span class="s">"objectName"</span><span class="p">:</span> <span class="s">"OptionalObjectType"</span><span class="p">,</span>
+    <span class="s">"objectData"</span><span class="p">:</span> <span class="s">"JSON representation of logged object"</span><span class="p">,</span>
+    <span class="s">"level"</span><span class="p">:</span> <span class="s">"INFO"</span><span class="p">,</span>
+    <span class="s">"isSnapshot"</span><span class="p">:</span> <span class="kc">false</span><span class="p">,</span>
+    <span class="s">"file"</span><span class="p">:</span> <span class="s">"/path/to/SourceFile.swift"</span><span class="p">,</span>
+    <span class="s">"function"</span><span class="p">:</span> <span class="s">"functionName()"</span><span class="p">,</span>
+    <span class="s">"line"</span><span class="p">:</span> <span class="mi">42</span><span class="p">,</span>
+    <span class="s">"timestamp"</span><span class="p">:</span> <span class="s">"2024-01-15T10:30:00Z"</span>
+<span class="p">}</span>
+</code></pre>
+<h2 id='best-practices' class='heading'>Best Practices</h2>
+
+<ol>
+<li><strong>Use Appropriate Log Levels</strong>: Choose the right severity level for each message</li>
+<li><strong>Leverage Object Logging</strong>: Log structured data for better debugging context</li>
+<li><strong>Regular Cleanup</strong>: Periodically clear old logs to manage storage</li>
+<li><strong>Snapshots for Complex State</strong>: Use environment snapshots for multi-component debugging</li>
+<li><strong>Type Aliases</strong>: Create shorter aliases for frequent use</li>
+</ol>
+<h2 id='requirements' class='heading'>Requirements</h2>
+
+<ul>
+<li>iOS 13.0+</li>
+<li>Swift 5.0+</li>
+<li>Foundation framework</li>
+</ul>
+<h2 id='documentation' class='heading'>Documentation</h2>
+
+<p>Full API documentation is available at: <strong><a href="https://pedrocavaleiro.github.io/SimpleLogger/">https://pedrocavaleiro.github.io/SimpleLogger/</a></strong></p>
+<h2 id='contributing' class='heading'>Contributing</h2>
+
+<p>Contributions are welcome! Please feel free to submit a Pull Request.</p>
+<h2 id='license' class='heading'>License</h2>
+
+<p>This project is licensed under the terms included in the LICENSE file.</p>
+
+<hr>
+
+<p>Built with ❤️ by <a href="https://github.com/PedroCavaleiro">Pedro Cavaleiro</a></p>
+
+          </div>
+        </section>
+
+
+      </article>
+    </div>
+    <section class="footer">
+      <p>&copy; 2025 <a class="link" href="" target="_blank" rel="external noopener"></a>. All rights reserved. (Last updated: 2025-09-11)</p>
+      <p>Generated by <a class="link" href="https://github.com/realm/jazzy" target="_blank" rel="external noopener">jazzy ♪♫ v0.15.3</a>, a <a class="link" href="https://realm.io" target="_blank" rel="external noopener">Realm</a> project.</p>
+    </section>
+  </body>
+</html>

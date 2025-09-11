@@ -1,0 +1,838 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>SimpleLogger Class Reference</title>
+    <link rel="stylesheet" type="text/css" href="../css/jazzy.css" />
+    <link rel="stylesheet" type="text/css" href="../css/highlight.css" />
+    <meta charset="utf-8">
+    <script src="../js/jquery.min.js" defer></script>
+    <script src="../js/jazzy.js" defer></script>
+    
+    <script src="../js/lunr.min.js" defer></script>
+    <script src="../js/typeahead.jquery.js" defer></script>
+    <script src="../js/jazzy.search.js" defer></script>
+  </head>
+  <body>
+
+    <a name="//apple_ref/swift/Class/SimpleLogger" class="dashAnchor"></a>
+
+    <a title="SimpleLogger Class Reference"></a>
+
+    <header class="header">
+      <p class="header-col header-col--primary">
+        <a class="header-link" href="../index.html">
+           Docs
+        </a>
+         (100% documented)
+      </p>
+    
+      <div class="header-col--secondary">
+        <form role="search" action="../search.json">
+          <input type="text" placeholder="Search documentation" data-typeahead>
+        </form>
+      </div>
+    
+    
+    </header>
+
+    <p class="breadcrumbs">
+      <a class="breadcrumb" href="../index.html">Index</a>
+      <img class="carat" src="../img/carat.png" alt=""/>
+      <a class="breadcrumb" href="../Classes.html">Classes</a>
+      <img class="carat" src="../img/carat.png" alt=""/>
+      SimpleLogger.SimpleLogger Class Reference
+    </p>
+
+    <div class="content-wrapper">
+      <nav class="navigation">
+        <ul class="nav-groups">
+          <li class="nav-group-name">
+            <a class="nav-group-name-link" href="../Classes.html">Classes</a>
+            <ul class="nav-group-tasks">
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../Classes/SimpleLogger.html">SimpleLogger</a>
+              </li>
+            </ul>
+          </li>
+          <li class="nav-group-name">
+            <a class="nav-group-name-link" href="../Enums.html">Enumerations</a>
+            <ul class="nav-group-tasks">
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../Enums/LogLevel.html">LogLevel</a>
+              </li>
+            </ul>
+          </li>
+          <li class="nav-group-name">
+            <a class="nav-group-name-link" href="../Structs.html">Structures</a>
+            <ul class="nav-group-tasks">
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../Structs/LogEntry.html">LogEntry</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../Structs/LogFileSummary.html">LogFileSummary</a>
+              </li>
+            </ul>
+          </li>
+        </ul>
+      </nav>
+      <article class="main-content">
+
+        <section class="section">
+          <div class="section-content top-matter">
+            <h1>SimpleLogger</h1>
+              <div class="declaration">
+                <div class="language">
+                  
+                  <pre class="highlight swift"><code><span class="kd">@MainActor</span>
+<span class="kd">public</span> <span class="kd">class</span> <span class="kt">SimpleLogger</span></code></pre>
+
+                </div>
+              </div>
+            <p>A comprehensive logging utility for application-wide log collection, persistence, and analysis.</p>
+
+<p>The <code>SimpleLogger</code> type provides a centralized, static logging system with file-based persistence,
+categorized severity levels, and robust log management capabilities. It supports structured
+logging with contextual information, automatic file organization, and performance-optimized storage.</p>
+
+<p>The name can be simplified by declaring a type alias such as <code>typealias Logger = SimpleLogger</code></p>
+<h2 id='features' class='heading'>Features</h2>
+
+<ul>
+<li><strong>Structured Logging</strong>: Captures context including file, function, and line number automatically</li>
+<li><strong>Severity Levels</strong>: Five-tier logging levels from debug to critical for proper categorization</li>
+<li><strong>File Persistence</strong>: JSON-based storage with automatic file management and size limits</li>
+<li><strong>Log Analysis</strong>: Statistical summaries and level-based counting for log files</li>
+<li><strong>Memory Management</strong>: Automatic log rotation when files exceed size thresholds</li>
+<li><strong>Environment Snapshots</strong>: Capability to capture complete application state for debugging</li>
+</ul>
+<h2 id='usage-context' class='heading'>Usage Context</h2>
+
+<p>This utility is used throughout the application for debugging, error tracking, performance monitoring,
+and compliance logging. It provides developers with detailed execution traces and administrators
+with comprehensive audit trails.</p>
+<h2 id='environment-requirements' class='heading'>Environment Requirements</h2>
+
+<ul>
+<li><strong>Foundation Framework</strong>: Uses FileManager for document directory access and file operations</li>
+<li><strong>Document Directory</strong>: Requires write access to the application&rsquo;s document directory</li>
+<li><strong>JSON Encoding</strong>: Depends on Codable protocol for log entry serialization</li>
+<li><p><strong>Main Actor</strong>: All operations are main-actor isolated for thread safety</p></li>
+</ul><div class="aside aside-note">
+    <p class="aside-title">Note</p>
+    <p>Log files are automatically managed with size limits to prevent excessive storage usage.</p>
+
+</div><div class="aside aside-important">
+    <p class="aside-title">Important</p>
+    <p>All methods are static; no singleton instance is required. Call directly via <code>SimpleLogger.methodName(...)</code>.</p>
+
+</div>
+
+          </div>
+        </section>
+
+        <section class="section">
+          <div class="section-content">
+            <div class="task-group">
+              <div class="task-name-container">
+                <a name="/Reading%20Methods"></a>
+                <a name="//apple_ref/swift/Section/Reading Methods" class="dashAnchor"></a>
+                <div class="section-name-container">
+                  <a class="section-name-link" href="#/Reading%20Methods"></a>
+                  <h3 class="section-name"><span>Reading Methods</span>
+</h3>
+                </div>
+              </div>
+              <ul class="item-container">
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:12SimpleLoggerAAC12listLogFilesSayAA0D11FileSummaryVGyFZ"></a>
+                    <a name="//apple_ref/swift/Method/listLogFiles()" class="dashAnchor"></a>
+                    <a class="token" href="#/s:12SimpleLoggerAAC12listLogFilesSayAA0D11FileSummaryVGyFZ">listLogFiles()</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Lists all log files with comprehensive metadata and statistical analysis.</p>
+
+<p>Scans the logging directory and generates detailed summaries for each log file,
+including file size, modification timestamps, and categorized entry counts by severity level.
+This method provides administrators and developers with overview information for log management.</p>
+
+<p>The analysis process includes:</p>
+
+<ol>
+<li><strong>Directory Scanning</strong>: Enumerates all JSON files in the logging directory</li>
+<li><strong>Metadata Extraction</strong>: Retrieves file size and last modification date</li>
+<li><strong>Content Analysis</strong>: Parses log entries and counts occurrences by severity level</li>
+<li><strong>Summary Generation</strong>: Creates structured summaries with all relevant information</li>
+</ol>
+<div class="aside aside-note">
+    <p class="aside-title">Note</p>
+    <p>Only processes files with <code>.json</code> extension to avoid non-log files</p>
+
+</div>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">@MainActor</span>
+<span class="kd">public</span> <span class="kd">static</span> <span class="kd">func</span> <span class="nf">listLogFiles</span><span class="p">()</span> <span class="o">-&gt;</span> <span class="p">[</span><span class="kt"><a href="../Structs/LogFileSummary.html">LogFileSummary</a></span><span class="p">]</span></code></pre>
+
+                        </div>
+                      </div>
+                      <div>
+                        <h4>Return Value</h4>
+                        <p>Array of <code><a href="../Structs/LogFileSummary.html">LogFileSummary</a></code> objects containing file metadata and statistics,
+      or empty array if logging directory is inaccessible</p>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:12SimpleLoggerAAC12logFileStatsSi9fileCount_Si9totalSizetyFZ"></a>
+                    <a name="//apple_ref/swift/Method/logFileStats()" class="dashAnchor"></a>
+                    <a class="token" href="#/s:12SimpleLoggerAAC12logFileStatsSi9fileCount_Si9totalSizetyFZ">logFileStats()</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Calculates aggregate statistics for all log files in the logging directory.</p>
+
+<p>Provides quick overview metrics for log file management, including total file count
+and cumulative storage usage. This information is useful for monitoring storage consumption
+and determining when log cleanup operations may be necessary.</p>
+
+<p>The calculation process:</p>
+
+<ol>
+<li><strong>Directory Access</strong>: Locates and accesses the logging directory</li>
+<li><strong>File Enumeration</strong>: Counts only JSON log files, excluding other file types</li>
+<li><strong>Size Aggregation</strong>: Sums individual file sizes for total storage usage</li>
+<li><strong>Error Handling</strong>: Gracefully handles inaccessible files or directories</li>
+</ol>
+
+<p>Returns <code>(0, 0)</code> if the logging directory is inaccessible or contains no log files.</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">@MainActor</span>
+<span class="kd">public</span> <span class="kd">static</span> <span class="kd">func</span> <span class="nf">logFileStats</span><span class="p">()</span> <span class="o">-&gt;</span> <span class="p">(</span><span class="nv">fileCount</span><span class="p">:</span> <span class="kt">Int</span><span class="p">,</span> <span class="nv">totalSize</span><span class="p">:</span> <span class="kt">Int</span><span class="p">)</span></code></pre>
+
+                        </div>
+                      </div>
+                      <div>
+                        <h4>Return Value</h4>
+                        <p>A tuple containing:
+
+<ul>
+<li><code>fileCount</code>: Number of log files in the directory</li>
+<li><code>totalSize</code>: Combined size of all log files in bytes</li>
+</ul></p>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:12SimpleLoggerAAC14loadLogEntries13fromFileNamedSayAA0D5EntryVGSS_tFZ"></a>
+                    <a name="//apple_ref/swift/Method/loadLogEntries(fromFileNamed:)" class="dashAnchor"></a>
+                    <a class="token" href="#/s:12SimpleLoggerAAC14loadLogEntries13fromFileNamedSayAA0D5EntryVGSS_tFZ">loadLogEntries(fromFileNamed:<wbr>)</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Loads and returns all log entries from a specified log file in reverse chronological order.</p>
+
+<p>Retrieves complete log history from a specific file, presenting entries with the most recent
+first for optimal viewing and analysis. This method handles file access, JSON parsing,
+and data transformation automatically.</p>
+
+<p>The loading process includes:</p>
+
+<ol>
+<li><strong>File Resolution</strong>: Constructs the full file path with proper extension handling</li>
+<li><strong>Data Loading</strong>: Reads JSON content from the specified log file</li>
+<li><strong>Deserialization</strong>: Converts JSON data to structured LogEntry objects</li>
+<li><strong>Chronological Ordering</strong>: Reverses entries to show most recent first</li>
+<li><strong>Error Recovery</strong>: Returns empty array for missing or corrupted files</li>
+</ol>
+<div class="aside aside-note">
+    <p class="aside-title">Note</p>
+    <p>Automatically appends <code>.swift.json</code> extension to the provided filename</p>
+
+</div>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">@MainActor</span>
+<span class="kd">public</span> <span class="kd">static</span> <span class="kd">func</span> <span class="nf">loadLogEntries</span><span class="p">(</span><span class="n">fromFileNamed</span> <span class="nv">fileName</span><span class="p">:</span> <span class="kt">String</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="p">[</span><span class="kt"><a href="../Structs/LogEntry.html">LogEntry</a></span><span class="p">]</span></code></pre>
+
+                        </div>
+                      </div>
+                      <div>
+                        <h4>Parameters</h4>
+                        <table class="graybox">
+                          <tbody>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>fileName</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>The base name of the log file without extension
+(e.g., &ldquo;MyViewController.swift&rdquo; or &ldquo;MyViewController&rdquo;)</p>
+                                </div>
+                              </td>
+                            </tr>
+                          </tbody>
+                        </table>
+                      </div>
+                      <div>
+                        <h4>Return Value</h4>
+                        <p>Array of <code><a href="../Structs/LogEntry.html">LogEntry</a></code> objects in reverse chronological order,
+      or empty array if file doesn&rsquo;t exist or cannot be read</p>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+              </ul>
+            </div>
+            <div class="task-group">
+              <div class="task-name-container">
+                <a name="/Logging%20Methods"></a>
+                <a name="//apple_ref/swift/Section/Logging Methods" class="dashAnchor"></a>
+                <div class="section-name-container">
+                  <a class="section-name-link" href="#/Logging%20Methods"></a>
+                  <h3 class="section-name"><span>Logging Methods</span>
+</h3>
+                </div>
+              </div>
+              <ul class="item-container">
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:12SimpleLoggerAAC3log_5level10isSnapshot4file8function4line9timestampySS_AA8LogLevelOSbS2SSi10Foundation4DateVtFZ"></a>
+                    <a name="//apple_ref/swift/Method/log(_:level:isSnapshot:file:function:line:timestamp:)" class="dashAnchor"></a>
+                    <a class="token" href="#/s:12SimpleLoggerAAC3log_5level10isSnapshot4file8function4line9timestampySS_AA8LogLevelOSbS2SSi10Foundation4DateVtFZ">log(_:<wbr>level:<wbr>isSnapshot:<wbr>file:<wbr>function:<wbr>line:<wbr>timestamp:<wbr>)</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Logs a message with comprehensive contextual information for debugging and tracing.</p>
+
+<p>Creates a structured log entry with automatic context capture including source file,
+function name, and line number. This method provides the primary logging interface
+for simple text messages with optional severity level specification.</p>
+
+<p>The logging process includes:</p>
+
+<ol>
+<li><strong>Context Capture</strong>: Automatically records calling context using compiler directives</li>
+<li><strong>Entry Creation</strong>: Constructs structured LogEntry with all contextual information</li>
+<li><strong>File Organization</strong>: Groups entries by source file for logical organization</li>
+<li><strong>Persistence</strong>: Appends entry to appropriate log file with atomic operations</li>
+</ol>
+<div class="aside aside-note">
+    <p class="aside-title">Note</p>
+    <p>Context parameters are automatically filled and should not be manually specified</p>
+
+</div>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">@MainActor</span>
+<span class="kd">public</span> <span class="kd">static</span> <span class="kd">func</span> <span class="nf">log</span><span class="p">(</span>
+    <span class="n">_</span> <span class="nv">message</span><span class="p">:</span> <span class="kt">String</span><span class="p">,</span>
+    <span class="nv">level</span><span class="p">:</span> <span class="kt"><a href="../Enums/LogLevel.html">LogLevel</a></span> <span class="o">=</span> <span class="o">.</span><span class="n">info</span><span class="p">,</span>
+    <span class="nv">isSnapshot</span><span class="p">:</span> <span class="kt">Bool</span> <span class="o">=</span> <span class="kc">false</span><span class="p">,</span>
+    <span class="nv">file</span><span class="p">:</span> <span class="kt">String</span> <span class="o">=</span> <span class="k">#file</span><span class="p">,</span>
+    <span class="nv">function</span><span class="p">:</span> <span class="kt">String</span> <span class="o">=</span> <span class="k">#function</span><span class="p">,</span>
+    <span class="nv">line</span><span class="p">:</span> <span class="kt">Int</span> <span class="o">=</span> <span class="k">#line</span><span class="p">,</span>
+    <span class="nv">timestamp</span><span class="p">:</span> <span class="kt">Date</span> <span class="o">=</span> <span class="kt">Date</span><span class="p">()</span>
+<span class="p">)</span></code></pre>
+
+                        </div>
+                      </div>
+                      <div>
+                        <h4>Parameters</h4>
+                        <table class="graybox">
+                          <tbody>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>message</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>The informational content to log</p>
+                                </div>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>level</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>The severity level for categorization (defaults to <code>.info</code>)</p>
+                                </div>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>file</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>Source file path (automatically filled by compiler)</p>
+                                </div>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>function</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>Function name where log is called (automatically filled)</p>
+                                </div>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>line</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>Line number of the log call (automatically filled)</p>
+                                </div>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>timestamp</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>Time of log creation (defaults to current time)</p>
+                                </div>
+                              </td>
+                            </tr>
+                          </tbody>
+                        </table>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:12SimpleLoggerAAC3log__5level10isSnapshot4file8function4line9timestampySS_xSgAA8LogLevelOSbS2SSi10Foundation4DateVtSeRzSERzlFZ"></a>
+                    <a name="//apple_ref/swift/Method/log(_:_:level:isSnapshot:file:function:line:timestamp:)" class="dashAnchor"></a>
+                    <a class="token" href="#/s:12SimpleLoggerAAC3log__5level10isSnapshot4file8function4line9timestampySS_xSgAA8LogLevelOSbS2SSi10Foundation4DateVtSeRzSERzlFZ">log(_:<wbr>_:<wbr>level:<wbr>isSnapshot:<wbr>file:<wbr>function:<wbr>line:<wbr>timestamp:<wbr>)</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Logs a message along with a structured data object for comprehensive debugging.</p>
+
+<p>Provides enhanced logging capabilities by combining text messages with serialized
+data objects. This method is particularly useful for debugging complex state changes,
+API responses, or data transformations where both context and data are important.</p>
+
+<p>The enhanced logging process includes:</p>
+
+<ol>
+<li><strong>Message Encoding</strong>: Serializes the message string to JSON format</li>
+<li><strong>Object Serialization</strong>: Converts the provided Codable object to JSON representation</li>
+<li><strong>Type Information</strong>: Records the object&rsquo;s type name for debugging context</li>
+<li><strong>Entry Creation</strong>: Constructs comprehensive LogEntry with all information</li>
+<li><strong>File Persistence</strong>: Appends the enriched entry to the appropriate log file</li>
+</ol>
+<div class="aside aside-note">
+    <p class="aside-title">Note</p>
+    <p>Both message and data objects are JSON-encoded for consistent storage format</p>
+
+</div><div class="aside aside-important">
+    <p class="aside-title">Important</p>
+    <p>Force unwrapping is used for JSON encoding - ensure objects are properly Codable</p>
+
+</div>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">@MainActor</span>
+<span class="kd">public</span> <span class="kd">static</span> <span class="kd">func</span> <span class="n">log</span><span class="o">&lt;</span><span class="kt">T</span><span class="p">:</span> <span class="kt">Codable</span><span class="o">&gt;</span><span class="p">(</span>
+    <span class="n">_</span> <span class="nv">message</span><span class="p">:</span> <span class="kt">String</span><span class="p">,</span>
+    <span class="n">_</span> <span class="nv">data</span><span class="p">:</span> <span class="kt">T</span><span class="p">?,</span>
+    <span class="nv">level</span><span class="p">:</span> <span class="kt"><a href="../Enums/LogLevel.html">LogLevel</a></span> <span class="o">=</span> <span class="o">.</span><span class="n">info</span><span class="p">,</span>
+    <span class="nv">isSnapshot</span><span class="p">:</span> <span class="kt">Bool</span> <span class="o">=</span> <span class="kc">false</span><span class="p">,</span>
+    <span class="nv">file</span><span class="p">:</span> <span class="kt">String</span> <span class="o">=</span> <span class="k">#file</span><span class="p">,</span>
+    <span class="nv">function</span><span class="p">:</span> <span class="kt">String</span> <span class="o">=</span> <span class="k">#function</span><span class="p">,</span>
+    <span class="nv">line</span><span class="p">:</span> <span class="kt">Int</span> <span class="o">=</span> <span class="k">#line</span><span class="p">,</span>
+    <span class="nv">timestamp</span><span class="p">:</span> <span class="kt">Date</span> <span class="o">=</span> <span class="kt">Date</span><span class="p">()</span>
+<span class="p">)</span></code></pre>
+
+                        </div>
+                      </div>
+                      <div>
+                        <h4>Parameters</h4>
+                        <table class="graybox">
+                          <tbody>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>message</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>The descriptive text message providing context for the logged data</p>
+                                </div>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>data</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>Optional Codable object to serialize and include with the log entry</p>
+                                </div>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>level</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>The severity level for categorization (defaults to <code>.info</code>)</p>
+                                </div>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>file</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>Source file path (automatically filled by compiler)</p>
+                                </div>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>function</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>Function name where log is called (automatically filled)</p>
+                                </div>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>line</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>Line number of the log call (automatically filled)</p>
+                                </div>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>timestamp</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>Time of log creation (defaults to current time)</p>
+                                </div>
+                              </td>
+                            </tr>
+                          </tbody>
+                        </table>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+              </ul>
+            </div>
+            <div class="task-group">
+              <div class="task-name-container">
+                <a name="/File%20Persistence"></a>
+                <a name="//apple_ref/swift/Section/File Persistence" class="dashAnchor"></a>
+                <div class="section-name-container">
+                  <a class="section-name-link" href="#/File%20Persistence"></a>
+                  <h3 class="section-name"><span>File Persistence</span>
+</h3>
+                </div>
+              </div>
+              <ul class="item-container">
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:12SimpleLoggerAAC8snapshotyySe_SEpd_tFZ"></a>
+                    <a name="//apple_ref/swift/Method/snapshot(_:)" class="dashAnchor"></a>
+                    <a class="token" href="#/s:12SimpleLoggerAAC8snapshotyySe_SEpd_tFZ">snapshot(_:<wbr>)</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Captures comprehensive environment snapshots for debugging and diagnostics.</p>
+
+<p>Creates detailed snapshots of one or more application components and their current state,
+providing developers with complete environmental context for debugging complex issues.
+This method is particularly useful for capturing system state before or after critical operations.</p>
+
+<p>The snapshot process supports any number of <code>Codable</code> components, such as:</p>
+
+<ul>
+<li><strong>AppState</strong>: Complete application state including user session and configuration</li>
+<li><strong>SettingsManager</strong>: Current settings manager state and user preferences</li>
+<li><strong>GeofenceResolver</strong>: Active geofence data and location-based configurations</li>
+</ul>
+
+<p>Each snapshot is logged with debug-level severity and synthetic file/function information
+to clearly identify these as environment snapshots rather than regular log entries.</p>
+
+<p>Example:</p>
+<pre class="highlight swift"><code><span class="nf">snapshot</span><span class="p">(</span><span class="n">appState</span><span class="p">,</span> <span class="kt">SettingsDebug</span><span class="p">(),</span> <span class="kt">GeofenceResolver</span><span class="o">.</span><span class="n">shared</span><span class="o">.</span><span class="n">geofences</span><span class="p">)</span>
+</code></pre>
+<div class="aside aside-note">
+    <p class="aside-title">Note</p>
+    <p>All snapshots use debug-level logging and synthetic source information.</p>
+
+</div><div class="aside aside-important">
+    <p class="aside-title">Important</p>
+    <p>Each component must conform to <code>Codable</code> so it can be serialized and logged.</p>
+
+</div>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">@MainActor</span>
+<span class="kd">public</span> <span class="kd">static</span> <span class="kd">func</span> <span class="nf">snapshot</span><span class="p">(</span><span class="n">_</span> <span class="nv">items</span><span class="p">:</span> <span class="kd">any</span> <span class="kt">Codable</span><span class="o">...</span><span class="p">)</span></code></pre>
+
+                        </div>
+                      </div>
+                      <div>
+                        <h4>Parameters</h4>
+                        <table class="graybox">
+                          <tbody>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>items</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>A variadic list of environment components conforming to <code>Codable</code></p>
+                                </div>
+                              </td>
+                            </tr>
+                          </tbody>
+                        </table>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:12SimpleLoggerAAC9clearLogsyyFZ"></a>
+                    <a name="//apple_ref/swift/Method/clearLogs()" class="dashAnchor"></a>
+                    <a class="token" href="#/s:12SimpleLoggerAAC9clearLogsyyFZ">clearLogs()</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Deletes all log files in the logging directory for complete log cleanup.</p>
+
+<p>Performs a comprehensive cleanup operation by removing all JSON log files from the
+logging directory. This method is useful for maintenance operations, privacy compliance,
+or when starting fresh log collection cycles.</p>
+
+<p>The cleanup process:</p>
+
+<ol>
+<li><strong>Directory Access</strong>: Locates the logging directory within document storage</li>
+<li><strong>File Enumeration</strong>: Identifies all JSON files in the logging directory</li>
+<li><strong>Selective Removal</strong>: Deletes only log files (JSON extension) to preserve other data</li>
+<li><strong>Error Tolerance</strong>: Continues operation even if individual file deletions fail</li>
+</ol>
+<div class="aside aside-note">
+    <p class="aside-title">Note</p>
+    Only removes files with <code>.json</code> extension to avoid deleting non-log files
+
+</div><div class="aside aside-important">
+    <p class="aside-title">Important</p>
+    This operation is irreversible - all log history will be permanently lost
+
+</div>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">@MainActor</span>
+<span class="kd">public</span> <span class="kd">static</span> <span class="kd">func</span> <span class="nf">clearLogs</span><span class="p">()</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:12SimpleLoggerAAC13deleteLogFile5namedySS_tFZ"></a>
+                    <a name="//apple_ref/swift/Method/deleteLogFile(named:)" class="dashAnchor"></a>
+                    <a class="token" href="#/s:12SimpleLoggerAAC13deleteLogFile5namedySS_tFZ">deleteLogFile(named:<wbr>)</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Deletes a specific log file by its base filename for targeted log management.</p>
+
+<p>Provides granular control over log file management by allowing removal of individual
+log files based on their source component or module. This method is useful for
+component-specific cleanup or when addressing storage concerns for particular modules.</p>
+
+<p>The deletion process:</p>
+
+<ol>
+<li><strong>URL Resolution</strong>: Constructs the complete file path from the base filename</li>
+<li><strong>Existence Check</strong>: Verifies the file exists before attempting deletion</li>
+<li><strong>Safe Removal</strong>: Performs deletion with error handling to prevent crashes</li>
+<li><strong>Extension Handling</strong>: Automatically manages file extension requirements</li>
+</ol>
+<div class="aside aside-note">
+    <p class="aside-title">Note</p>
+    <p>Automatically handles file extension and path construction</p>
+
+</div><div class="aside aside-important">
+    <p class="aside-title">Important</p>
+    <p>Deletion is permanent and cannot be undone</p>
+
+</div>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">@MainActor</span>
+<span class="kd">public</span> <span class="kd">static</span> <span class="kd">func</span> <span class="nf">deleteLogFile</span><span class="p">(</span><span class="n">named</span> <span class="nv">fileName</span><span class="p">:</span> <span class="kt">String</span><span class="p">)</span></code></pre>
+
+                        </div>
+                      </div>
+                      <div>
+                        <h4>Parameters</h4>
+                        <table class="graybox">
+                          <tbody>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>fileName</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>The base name of the log file to delete
+(e.g., &ldquo;MyViewController.swift&rdquo; or &ldquo;MyViewController&rdquo;)</p>
+                                </div>
+                              </td>
+                            </tr>
+                          </tbody>
+                        </table>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+              </ul>
+            </div>
+          </div>
+        </section>
+
+      </article>
+    </div>
+    <section class="footer">
+      <p>&copy; 2025 <a class="link" href="" target="_blank" rel="external noopener"></a>. All rights reserved. (Last updated: 2025-09-11)</p>
+      <p>Generated by <a class="link" href="https://github.com/realm/jazzy" target="_blank" rel="external noopener">jazzy ♪♫ v0.15.3</a>, a <a class="link" href="https://realm.io" target="_blank" rel="external noopener">Realm</a> project.</p>
+    </section>
+  </body>
+</html>
