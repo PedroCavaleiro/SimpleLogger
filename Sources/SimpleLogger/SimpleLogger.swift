@@ -8,6 +8,9 @@
 //
 
 import Foundation
+import ZIPFoundation
+
+fileprivate typealias Logger = SimpleLogger
 
 /// A comprehensive logging utility for application-wide log collection, persistence, and analysis.
 ///
@@ -401,6 +404,86 @@ public class SimpleLogger {
         if fileManager.fileExists(atPath: url.path) {
             try? fileManager.removeItem(at: url)
         }
+    }
+    
+    /// Creates a compressed ZIP archive containing all log files for export or transmission.
+    ///
+    /// Generates a complete collection of all JSON log files in a single ZIP archive, making it
+    /// convenient for sharing logs with support teams, backing up log data, or transmitting
+    /// diagnostic information. This method handles the entire archival process automatically,
+    /// including temporary file management and cleanup.
+    ///
+    /// The archival process includes:
+    /// 1. **Directory Enumeration**: Scans the logging directory for all JSON log files
+    /// 2. **Archive Creation**: Creates a temporary ZIP file with a unique identifier
+    /// 3. **File Compression**: Adds each log file to the archive with DEFLATE compression
+    /// 4. **Data Extraction**: Reads the completed ZIP archive into memory as Data
+    /// 5. **Cleanup**: Automatically removes temporary files after processing
+    ///
+    /// ## Use Cases
+    /// - **Bug Reports**: Attach comprehensive log data to support tickets
+    /// - **Backup Operations**: Create portable backups of application logs
+    /// - **Remote Diagnostics**: Send complete log history to development teams
+    /// - **Compliance**: Generate audit trails for regulatory requirements
+    ///
+    /// ## Performance Considerations
+    /// This method loads all log files into memory simultaneously and may consume significant
+    /// resources if log files are large or numerous. Consider using `clearLogs()` periodically
+    /// to manage log file sizes.
+    ///
+    /// - Returns: Compressed ZIP archive as `Data` containing all log files, or `nil` if:
+    ///   - Document directory is inaccessible
+    ///   - Logging directory doesn't exist or is empty
+    ///   - ZIP archive creation fails
+    ///   - File I/O operations encounter errors
+    ///
+    /// ## Example
+    /// ```swift
+    /// if let zipData = SimpleLogger.gatherFiles() {
+    ///     // Save to file, share via email, or upload to server
+    ///     try zipData.write(to: exportURL)
+    /// } else {
+    ///     print("No log files available for export")
+    /// }
+    /// ```
+    ///
+    /// - Note: Creates and automatically cleans up temporary files during the archival process
+    /// - Important: Returns `nil` if no log files exist or if any step in the process fails
+    public static func gatherFiles() -> Data? {
+        let fileManager = FileManager.default
+        guard let docsURL = fileManager.urls(for: .documentDirectory, in: .userDomainMask).first else { return nil }
+        let logsDir = docsURL.appendingPathComponent(loggingDirectoryName)
+
+        guard let enumerator = fileManager.enumerator(at: logsDir, includingPropertiesForKeys: nil) else { return nil }
+        let logFiles = enumerator.compactMap { $0 as? URL }.filter { $0.pathExtension == "json" }
+        guard !logFiles.isEmpty else { return nil }
+        
+        let tempZipURL = URL(fileURLWithPath: NSTemporaryDirectory()).appendingPathComponent(UUID().uuidString + ".zip")
+        defer { try? fileManager.removeItem(at: tempZipURL) }
+
+        let archive: Archive
+        do {
+            archive = try Archive(url: tempZipURL, accessMode: .create)
+        } catch {
+            Logger.log("Failed to create zip archive: \(error)", level: .error)
+            return nil
+        }
+
+        for fileURL in logFiles {
+            if let data = try? Data(contentsOf: fileURL) {
+                do {
+                    try archive.addEntry(with: fileURL.lastPathComponent, type: .file, uncompressedSize: Int64(data.count), compressionMethod: .deflate, provider: { position, size in
+                        return data.subdata(in: Int(position)..<Int(position)+size)
+                    })
+                } catch {
+                    Logger.log("Failed to add entry to zip: \(error)", level: .error)
+                    return nil
+                }
+            }
+        }
+
+        // Read ZIP contents as Data
+        return try? Data(contentsOf: tempZipURL)
     }
 
     /// Constructs the complete file URL for a log file with automatic directory management.

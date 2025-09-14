@@ -13,6 +13,7 @@ A comprehensive, lightweight Swift logging utility designed for iOS applications
 - 📈 **Log Analytics**: Statistical summaries and level-based counting for log files
 - 🧵 **Thread-Safe**: Main actor isolation ensures safe concurrent access
 - 🧹 **Log Management**: Individual file deletion and bulk cleanup operations
+- 📱 **SwiftUI Bug Reporter**: Ready-to-use UI components for in-app bug reporting
 
 ## Installation
 
@@ -59,7 +60,7 @@ SimpleLogger.snapshot(appState, settingsManager, networkConfig)
 // Different severity levels
 SimpleLogger.log("Debug information", level: .debug)
 SimpleLogger.log("General information", level: .info)
-SimpleLogger.log("Potential issue detected", level: .warning)
+SimpleLogger.log("Potentially harmful situation", level: .warning)
 SimpleLogger.log("Error occurred", level: .error)
 SimpleLogger.log("Critical system failure", level: .critical)
 ```
@@ -112,6 +113,227 @@ let entries = SimpleLogger.loadLogEntries(fromFileNamed: "ViewController")
 SimpleLogger.deleteLogFile(named: "OldController")
 SimpleLogger.clearLogs() // Delete all log files
 ```
+
+## SimpleLoggerUI - Bug Reporting Interface
+
+The SimpleLoggerUI target provides ready-to-use SwiftUI components for implementing in-app bug reporting functionality. These components automatically integrate with SimpleLogger's file system to include log files and device information in bug reports.
+
+### Features
+
+- 📝 **Pre-built Bug Report Form**: Complete SwiftUI form with customizable sections
+- 🔧 **Configurable Interface**: Customize headers, footers, placeholders, and button text
+- 📊 **Automatic Data Collection**: Include device info, app version, and OS details
+- 🗂️ **Log File Integration**: Automatically attach log files to bug reports
+- 🎨 **Custom Form Fields**: Add your own input fields (email, category, etc.)
+- 📸 **State Snapshots**: Capture application state when reports are sent
+- 🌐 **Localization Ready**: All text supports localization
+- 🎯 **Flexible Presentation**: Use in navigation stacks, sheets, or full-screen covers
+
+### Basic Usage
+
+Import both SimpleLogger and SimpleLoggerUI:
+
+```swift
+import SimpleLogger
+import SimpleLoggerUI
+```
+
+#### Simple Bug Report Form
+
+```swift
+import SwiftUI
+import SimpleLoggerUI
+
+struct ContentView: View {
+    @State private var showingBugReport = false
+    
+    var body: some View {
+        Button("Report Bug") {
+            showingBugReport = true
+        }
+        .sheet(isPresented: $showingBugReport) {
+            let config = ReporterViewConfiguration(
+                navigationBarTitle: "Report Issue",
+                sendAction: { issueText, preFilledData, customFields, logInfo in
+                    // Handle bug report submission
+                    submitBugReport(
+                        description: issueText,
+                        deviceInfo: preFilledData,
+                        additionalFields: customFields,
+                        logs: logInfo.1
+                    )
+                    showingBugReport = false
+                }
+            )
+            ReporterFormNavWrapper(configuration: config)
+        }
+    }
+}
+```
+
+#### Advanced Configuration with Custom Fields
+
+```swift
+struct BugReportView: View {
+    @State private var showingReport = false
+    
+    var body: some View {
+        Button("Advanced Bug Report") {
+            showingReport = true
+        }
+        .fullScreenCover(isPresented: $showingReport) {
+            let config = ReporterViewConfiguration(
+                navigationBarTitle: "Submit Feedback",
+                bgSectionHeader: "What went wrong?",
+                bgSectionFooter: "Please describe the issue in detail so we can help you better.",
+                showPrefilledDataSection: true,
+                showLogFilesInformation: true,
+                customFields: [
+                    CustomFormFieldWrapper(field: EmailFormField()),
+                    CustomFormFieldWrapper(field: CategoryFormField())
+                ],
+                sendAction: { issueText, preFilledData, customFields, logInfo in
+                    // Send to your bug tracking system
+                    BugTracker.submit(
+                        description: issueText,
+                        userEmail: customFields["email"] ?? "",
+                        category: customFields["category"] ?? "General",
+                        deviceInfo: preFilledData,
+                        logFiles: logInfo.1
+                    )
+                    showingReport = false
+                },
+                sendButtonText: "Submit Report",
+                snapshotObjects: [AppState.shared, UserSettings.shared]
+            )
+            ReporterFormNavWrapper(configuration: config)
+        }
+    }
+}
+```
+
+### Components
+
+#### ReporterFormView
+
+The main bug reporting form view that can be used within existing navigation contexts:
+
+```swift
+// Use when you already have a NavigationStack
+ReporterFormView(configuration: config)
+```
+
+#### ReporterFormNavWrapper  
+
+A convenience wrapper that provides its own NavigationStack - perfect for sheets and full-screen covers:
+
+```swift
+// Use for modal presentations
+ReporterFormNavWrapper(configuration: config)
+```
+
+#### ReporterViewConfiguration
+
+The configuration object that controls all aspects of the bug report form:
+
+```swift
+let config = ReporterViewConfiguration(
+    navigationBarTitle: "Report Bug",
+    bgSectionHeader: "Describe the Issue",
+    showPrefilledDataSection: true,
+    includeAppVersion: true,
+    includeDeviceModel: true,
+    includeDeviceOS: true,
+    sendAction: { issueText, preFilledData, customFields, logInfo in
+        // Your custom submission logic here
+    }
+)
+```
+
+### Custom Form Fields
+
+Create custom input fields by conforming to the `CustomFormField` protocol:
+
+```swift
+struct PriorityFormField: CustomFormField {
+    @State private var selectedPriority = "Medium"
+    let priorities = ["Low", "Medium", "High", "Critical"]
+    
+    var key: String { "priority" }
+    
+    var view: AnyView {
+        AnyView(
+            Picker("Priority", selection: $selectedPriority) {
+                ForEach(priorities, id: \.self) { priority in
+                    Text(priority)
+                }
+            }
+            .pickerStyle(SegmentedPickerStyle())
+        )
+    }
+    
+    func getValue() -> String {
+        return selectedPriority
+    }
+}
+```
+
+### Integration with Bug Tracking Systems
+
+The `sendAction` closure provides all collected data for integration with your preferred bug tracking system:
+
+```swift
+sendAction: { issueText, preFilledData, customFields, logInfo in
+    // Example: GitHub Issues
+    GitHubAPI.createIssue(
+        title: "Bug Report",
+        body: """
+        **Description:** \(issueText)
+        
+        **Device Info:**
+        \(preFilledData.map { "\($0.key): \($0.value)" }.joined(separator: "\n"))
+        
+        **Additional Fields:**
+        \(customFields.map { "\($0.key): \($0.value)" }.joined(separator: "\n"))
+        """,
+        attachments: logInfo.1
+    )
+    
+    // Example: JIRA
+    JiraAPI.createTicket(
+        summary: "User Reported Issue",
+        description: issueText,
+        customFields: customFields,
+        attachments: [logInfo.1]
+    )
+    
+    // Example: Email
+    EmailComposer.send(
+        to: "support@yourapp.com",
+        subject: "Bug Report",
+        body: issueText,
+        attachments: [logInfo.1]
+    )
+}
+```
+
+### Automatic Data Collection
+
+The bug reporter automatically collects and includes:
+
+- **App Version**: From bundle info
+- **Device Model**: iPhone/iPad model (requires DeviceKit)
+- **OS Version**: iOS version
+- **Log Files**: All SimpleLogger log files
+- **Timestamps**: When the report was created
+- **Custom Data**: Any additional fields you configure
+
+### Requirements for UI Components
+
+- iOS 13.0+
+- Swift 5.0+
+- SwiftUI framework
+- SimpleLogger framework
 
 ## Log Levels
 
