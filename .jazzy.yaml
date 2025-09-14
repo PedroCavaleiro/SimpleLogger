@@ -1,10 +1,4 @@
 output: docs
-swift_build_tool: xcodebuild
 min_acl: public
 theme: fullwidth
-xcodebuild_arguments:
-  - "-scheme"
-  - "SimpleLogger"
-  - "-destination"
-  - "platform=iOS,id=00008130-0011282110EB8D3A"
-
+sourcekitten_sourcefile: [SimpleLogger.json, SimpleLoggerUI.json]

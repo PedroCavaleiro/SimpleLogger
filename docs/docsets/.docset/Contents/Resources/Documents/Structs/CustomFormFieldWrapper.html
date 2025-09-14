@@ -1,0 +1,325 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>CustomFormFieldWrapper Structure Reference</title>
+    <link rel="stylesheet" type="text/css" href="../css/jazzy.css" />
+    <link rel="stylesheet" type="text/css" href="../css/highlight.css" />
+    <meta charset="utf-8">
+    <script src="../js/jquery.min.js" defer></script>
+    <script src="../js/jazzy.js" defer></script>
+    
+    <script src="../js/lunr.min.js" defer></script>
+    <script src="../js/typeahead.jquery.js" defer></script>
+    <script src="../js/jazzy.search.js" defer></script>
+  </head>
+  <body>
+
+    <a name="//apple_ref/swift/Struct/CustomFormFieldWrapper" class="dashAnchor"></a>
+
+    <a title="CustomFormFieldWrapper Structure Reference"></a>
+
+    <header class="header">
+      <p class="header-col header-col--primary">
+        <a class="header-link" href="../index.html">
+           Docs
+        </a>
+         (100% documented)
+      </p>
+    
+      <div class="header-col--secondary">
+        <form role="search" action="../search.json">
+          <input type="text" placeholder="Search documentation" data-typeahead>
+        </form>
+      </div>
+    
+    
+    </header>
+
+    <p class="breadcrumbs">
+      <a class="breadcrumb" href="../index.html">Index</a>
+      <img class="carat" src="../img/carat.png" alt=""/>
+      <a class="breadcrumb" href="../Structs.html">Structures</a>
+      <img class="carat" src="../img/carat.png" alt=""/>
+      SimpleLoggerUI.CustomFormFieldWrapper Structure Reference
+    </p>
+
+    <div class="content-wrapper">
+      <nav class="navigation">
+        <ul class="nav-groups">
+          <li class="nav-group-name">
+            <a class="nav-group-name-link" href="../Classes.html">Classes</a>
+            <ul class="nav-group-tasks">
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../Classes/ReporterViewConfiguration.html">ReporterViewConfiguration</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../Classes/SimpleLogger.html">SimpleLogger</a>
+              </li>
+            </ul>
+          </li>
+          <li class="nav-group-name">
+            <a class="nav-group-name-link" href="../Enums.html">Enumerations</a>
+            <ul class="nav-group-tasks">
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../Enums/LogLevel.html">LogLevel</a>
+              </li>
+            </ul>
+          </li>
+          <li class="nav-group-name">
+            <a class="nav-group-name-link" href="../Protocols.html">Protocols</a>
+            <ul class="nav-group-tasks">
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../Protocols/CustomFormField.html">CustomFormField</a>
+              </li>
+            </ul>
+          </li>
+          <li class="nav-group-name">
+            <a class="nav-group-name-link" href="../Structs.html">Structures</a>
+            <ul class="nav-group-tasks">
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../Structs/CustomFormFieldWrapper.html">CustomFormFieldWrapper</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../Structs/LogEntry.html">LogEntry</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../Structs/LogFileSummary.html">LogFileSummary</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../Structs/PreFilledDataComponent.html">PreFilledDataComponent</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../Structs/ReporterFormNavWrapper.html">ReporterFormNavWrapper</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../Structs/ReporterFormView.html">ReporterFormView</a>
+              </li>
+            </ul>
+          </li>
+        </ul>
+      </nav>
+      <article class="main-content">
+
+        <section class="section">
+          <div class="section-content top-matter">
+            <h1>CustomFormFieldWrapper</h1>
+              <div class="declaration">
+                <div class="language">
+                  
+                  <pre class="highlight swift"><code><span class="kd">@MainActor</span>
+<span class="kd">public</span> <span class="kd">struct</span> <span class="kt">CustomFormFieldWrapper</span></code></pre>
+
+                </div>
+              </div>
+            <p>A type-erased wrapper for custom form fields that handles state management and value extraction.</p>
+
+<p><code>CustomFormFieldWrapper</code> provides a way to store and manage different types of custom form fields
+in a uniform manner. It encapsulates the field&rsquo;s view, key, and value extraction logic, allowing
+collections of heterogeneous form fields to be handled consistently.</p>
+
+<p>This wrapper is particularly useful when building dynamic forms where the number and types of
+fields may vary at runtime, or when you need to store form fields in collections.</p>
+<h2 id='usage' class='heading'>Usage</h2>
+<pre class="highlight swift"><code><span class="k">let</span> <span class="nv">emailField</span> <span class="o">=</span> <span class="kt">EmailField</span><span class="p">()</span>
+<span class="k">let</span> <span class="nv">wrapper</span> <span class="o">=</span> <span class="kt">CustomFormFieldWrapper</span><span class="p">(</span><span class="nv">field</span><span class="p">:</span> <span class="n">emailField</span><span class="p">)</span>
+
+<span class="c1">// Access the wrapped properties</span>
+<span class="nf">print</span><span class="p">(</span><span class="n">wrapper</span><span class="o">.</span><span class="n">key</span><span class="p">)</span>        <span class="c1">// "email"</span>
+<span class="nf">print</span><span class="p">(</span><span class="n">wrapper</span><span class="o">.</span><span class="nf">getValue</span><span class="p">())</span> <span class="c1">// Current email value</span>
+</code></pre>
+<h2 id='topics' class='heading'>Topics</h2>
+<h3 id='creating-a-wrapper' class='heading'>Creating a Wrapper</h3>
+
+<ul>
+<li><code>init(field:)</code></li>
+</ul>
+<h3 id='accessing-field-data' class='heading'>Accessing Field Data</h3>
+
+<ul>
+<li><code>key</code></li>
+<li><code>view</code></li>
+<li><code>getValue()</code></li>
+</ul>
+
+          </div>
+        </section>
+
+        <section class="section">
+          <div class="section-content">
+            <div class="task-group">
+              <ul class="item-container">
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:14SimpleLoggerUI22CustomFormFieldWrapperV3keySSvp"></a>
+                    <a name="//apple_ref/swift/Property/key" class="dashAnchor"></a>
+                    <a class="token" href="#/s:14SimpleLoggerUI22CustomFormFieldWrapperV3keySSvp">key</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>The unique key identifier from the wrapped form field.</p>
+
+<p>This property provides direct access to the <code>fieldKey</code> of the wrapped
+<code><a href="../Protocols/CustomFormField.html">CustomFormField</a></code> without needing to interact with the original field instance.</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">@MainActor</span>
+<span class="kd">public</span> <span class="k">let</span> <span class="nv">key</span><span class="p">:</span> <span class="kt">String</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:14SimpleLoggerUI22CustomFormFieldWrapperV4view05SwiftC07AnyViewVvp"></a>
+                    <a name="//apple_ref/swift/Property/view" class="dashAnchor"></a>
+                    <a class="token" href="#/s:14SimpleLoggerUI22CustomFormFieldWrapperV4view05SwiftC07AnyViewVvp">view</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>The type-erased SwiftUI view representation of the form field.</p>
+
+<p>This property contains the visual representation of the form field, wrapped
+in an <code>AnyView</code> to allow storage of different field types in the same collection.
+Use this view when rendering the field in your form interface.</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">@MainActor</span>
+<span class="kd">public</span> <span class="k">let</span> <span class="nv">view</span><span class="p">:</span> <span class="kt">AnyView</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:14SimpleLoggerUI22CustomFormFieldWrapperV8getValueSSycvp"></a>
+                    <a name="//apple_ref/swift/Property/getValue" class="dashAnchor"></a>
+                    <a class="token" href="#/s:14SimpleLoggerUI22CustomFormFieldWrapperV8getValueSSycvp">getValue</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>A closure that returns the current value of the form field as a string.</p>
+
+<p>This closure provides access to the field&rsquo;s current value without maintaining
+a strong reference to the original field instance. Call this closure whenever
+you need to retrieve the field&rsquo;s current state.</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">@MainActor</span>
+<span class="kd">public</span> <span class="k">let</span> <span class="nv">getValue</span><span class="p">:</span> <span class="p">()</span> <span class="o">-&gt;</span> <span class="kt">String</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:14SimpleLoggerUI22CustomFormFieldWrapperV5fieldACx_tcAA0deF0Rzlufc"></a>
+                    <a name="//apple_ref/swift/Method/init(field:)" class="dashAnchor"></a>
+                    <a class="token" href="#/s:14SimpleLoggerUI22CustomFormFieldWrapperV5fieldACx_tcAA0deF0Rzlufc">init(field:<wbr>)</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Creates a new wrapper for the specified custom form field.</p>
+
+<p>This initializer takes any view that conforms to <code><a href="../Protocols/CustomFormField.html">CustomFormField</a></code> and creates
+a type-erased wrapper that can be stored alongside other wrapped fields regardless
+of their concrete types.</p>
+<h2 id='example' class='heading'>Example</h2>
+<pre class="highlight swift"><code><span class="kd">struct</span> <span class="kt">AgeField</span><span class="p">:</span> <span class="kt">CustomFormField</span> <span class="p">{</span>
+    <span class="kd">@State</span> <span class="kd">private</span> <span class="k">var</span> <span class="nv">age</span> <span class="o">=</span> <span class="s">""</span>
+
+    <span class="k">var</span> <span class="nv">fieldKey</span><span class="p">:</span> <span class="kt">String</span> <span class="p">{</span> <span class="s">"age"</span> <span class="p">}</span>
+    <span class="k">var</span> <span class="nv">fieldValue</span><span class="p">:</span> <span class="kt">String</span> <span class="p">{</span> <span class="n">age</span> <span class="p">}</span>
+
+    <span class="k">var</span> <span class="nv">body</span><span class="p">:</span> <span class="kd">some</span> <span class="kt">View</span> <span class="p">{</span>
+        <span class="kt">TextField</span><span class="p">(</span><span class="s">"Age"</span><span class="p">,</span> <span class="nv">text</span><span class="p">:</span> <span class="n">$age</span><span class="p">)</span>
+            <span class="o">.</span><span class="nf">keyboardType</span><span class="p">(</span><span class="o">.</span><span class="n">numberPad</span><span class="p">)</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+
+<span class="k">let</span> <span class="nv">ageField</span> <span class="o">=</span> <span class="kt">AgeField</span><span class="p">()</span>
+<span class="k">let</span> <span class="nv">wrapper</span> <span class="o">=</span> <span class="kt">CustomFormFieldWrapper</span><span class="p">(</span><span class="nv">field</span><span class="p">:</span> <span class="n">ageField</span><span class="p">)</span>
+</code></pre>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">@MainActor</span>
+<span class="kd">public</span> <span class="kd">init</span><span class="o">&lt;</span><span class="kt">T</span><span class="o">&gt;</span><span class="p">(</span><span class="nv">field</span><span class="p">:</span> <span class="kt">T</span><span class="p">)</span> <span class="k">where</span> <span class="kt">T</span> <span class="p">:</span> <span class="kt"><a href="../Protocols/CustomFormField.html">CustomFormField</a></span></code></pre>
+
+                        </div>
+                      </div>
+                      <div>
+                        <h4>Parameters</h4>
+                        <table class="graybox">
+                          <tbody>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>field</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>A view conforming to <code><a href="../Protocols/CustomFormField.html">CustomFormField</a></code> that will be wrapped.</p>
+                                </div>
+                              </td>
+                            </tr>
+                          </tbody>
+                        </table>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+              </ul>
+            </div>
+          </div>
+        </section>
+
+      </article>
+    </div>
+    <section class="footer">
+      <p>&copy; 2025 <a class="link" href="" target="_blank" rel="external noopener"></a>. All rights reserved. (Last updated: 2025-09-14)</p>
+      <p>Generated by <a class="link" href="https://github.com/realm/jazzy" target="_blank" rel="external noopener">jazzy ♪♫ v0.15.3</a>, a <a class="link" href="https://realm.io" target="_blank" rel="external noopener">Realm</a> project.</p>
+    </section>
+  </body>
+</html>
