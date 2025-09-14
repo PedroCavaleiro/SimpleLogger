@@ -79,7 +79,7 @@ struct ExampleReporterView: View {
         )
         
         VStack {
-            ReporterFormView(issueText: $issueText, configuration: config)
+            ReporterFormView(configuration: config)
             
             Button("Submit Report") {
                 // Get all form values
