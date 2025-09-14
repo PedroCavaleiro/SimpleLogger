@@ -178,28 +178,24 @@ struct CustomPreFilledComponentExamples {
 // MARK: - Preview Examples
 #Preview("Card Style") {
     ReporterFormView(
-        issueText: .constant("Sample bug description"),
         configuration: CustomPreFilledComponentExamples.cardStyleConfig
     )
 }
 
 #Preview("Badge Style") {
     ReporterFormView(
-        issueText: .constant("Sample bug description"),
         configuration: CustomPreFilledComponentExamples.badgeStyleConfig
     )
 }
 
 #Preview("Icon Style") {
     ReporterFormView(
-        issueText: .constant("Sample bug description"),
         configuration: CustomPreFilledComponentExamples.iconStyleConfig
     )
 }
 
 #Preview("Inline Custom") {
     ReporterFormView(
-        issueText: .constant("Sample bug description"),
         configuration: CustomPreFilledComponentExamples.inlineCustomConfig
     )
 }
