@@ -139,6 +139,14 @@ public struct ReporterFormNavWrapper: View {
     /// ## See Also
     /// - ``ReporterViewConfiguration``
     public let configuration: ReporterViewConfiguration
+    
+    /// Creates a new navigation wrapper for the reporter form with the specified configuration.
+    ///
+    /// - Parameter configuration: The configuration object that defines the form's
+    ///   appearance, behavior, custom fields, and action handlers.
+    public init(configuration: ReporterViewConfiguration) {
+        self.configuration = configuration
+    }
  
     /// The main view body that renders the navigation-wrapped bug reporting form.
     ///
