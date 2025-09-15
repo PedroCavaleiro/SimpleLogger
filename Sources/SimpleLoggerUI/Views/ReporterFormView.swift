@@ -118,6 +118,14 @@ public struct ReporterFormView: View {
     /// - ``ReporterViewConfiguration``
     public let configuration: ReporterViewConfiguration
     
+    /// Creates a new reporter form view with the specified configuration.
+    ///
+    /// - Parameter configuration: The configuration object that defines the form's
+    ///   appearance, behavior, custom fields, and action handlers.
+    public init(configuration: ReporterViewConfiguration) {
+        self.configuration = configuration
+    }
+    
     /// The main view body that renders the bug reporting form.
     ///
     /// The body creates a `NavigationStack` containing a `Form` with up to four sections:
