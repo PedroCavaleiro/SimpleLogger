@@ -1,0 +1,295 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>ReporterFormView Structure Reference</title>
+    <link rel="stylesheet" type="text/css" href="../css/jazzy.css" />
+    <link rel="stylesheet" type="text/css" href="../css/highlight.css" />
+    <meta charset="utf-8">
+    <script src="../js/jquery.min.js" defer></script>
+    <script src="../js/jazzy.js" defer></script>
+    
+    <script src="../js/lunr.min.js" defer></script>
+    <script src="../js/typeahead.jquery.js" defer></script>
+    <script src="../js/jazzy.search.js" defer></script>
+  </head>
+  <body>
+
+    <a name="//apple_ref/swift/Struct/ReporterFormView" class="dashAnchor"></a>
+
+    <a title="ReporterFormView Structure Reference"></a>
+
+    <header class="header">
+      <p class="header-col header-col--primary">
+        <a class="header-link" href="../index.html">
+           Docs
+        </a>
+         (100% documented)
+      </p>
+    
+      <div class="header-col--secondary">
+        <form role="search" action="../search.json">
+          <input type="text" placeholder="Search documentation" data-typeahead>
+        </form>
+      </div>
+    
+    
+    </header>
+
+    <p class="breadcrumbs">
+      <a class="breadcrumb" href="../index.html">Index</a>
+      <img class="carat" src="../img/carat.png" alt=""/>
+      <a class="breadcrumb" href="../Structs.html">Structures</a>
+      <img class="carat" src="../img/carat.png" alt=""/>
+      SimpleLoggerUI.ReporterFormView Structure Reference
+    </p>
+
+    <div class="content-wrapper">
+      <nav class="navigation">
+        <ul class="nav-groups">
+          <li class="nav-group-name">
+            <a class="nav-group-name-link" href="../Classes.html">Classes</a>
+            <ul class="nav-group-tasks">
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../Classes/ReporterViewConfiguration.html">ReporterViewConfiguration</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../Classes/SimpleLogger.html">SimpleLogger</a>
+              </li>
+            </ul>
+          </li>
+          <li class="nav-group-name">
+            <a class="nav-group-name-link" href="../Enums.html">Enumerations</a>
+            <ul class="nav-group-tasks">
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../Enums/LogLevel.html">LogLevel</a>
+              </li>
+            </ul>
+          </li>
+          <li class="nav-group-name">
+            <a class="nav-group-name-link" href="../Protocols.html">Protocols</a>
+            <ul class="nav-group-tasks">
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../Protocols/CustomFormField.html">CustomFormField</a>
+              </li>
+            </ul>
+          </li>
+          <li class="nav-group-name">
+            <a class="nav-group-name-link" href="../Structs.html">Structures</a>
+            <ul class="nav-group-tasks">
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../Structs/CustomFormFieldWrapper.html">CustomFormFieldWrapper</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../Structs/LogEntry.html">LogEntry</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../Structs/LogFileSummary.html">LogFileSummary</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../Structs/PreFilledDataComponent.html">PreFilledDataComponent</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../Structs/ReporterFormNavWrapper.html">ReporterFormNavWrapper</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../Structs/ReporterFormView.html">ReporterFormView</a>
+              </li>
+            </ul>
+          </li>
+        </ul>
+      </nav>
+      <article class="main-content">
+
+        <section class="section">
+          <div class="section-content top-matter">
+            <h1>ReporterFormView</h1>
+              <div class="declaration">
+                <div class="language">
+                  
+                  <pre class="highlight swift"><code><span class="kd">@MainActor</span>
+<span class="kd">public</span> <span class="kd">struct</span> <span class="kt">ReporterFormView</span> <span class="p">:</span> <span class="kt">View</span></code></pre>
+
+                </div>
+              </div>
+            <p>A SwiftUI view that renders a comprehensive bug reporting form interface.</p>
+
+<p><code>ReporterFormView</code> provides a structured form for collecting bug reports from users,
+including a main description field, optional custom form fields, automatically
+collected device information, and log files information. The view is highly configurable
+through a <code><a href="../Classes/ReporterViewConfiguration.html">ReporterViewConfiguration</a></code> object.</p>
+<h2 id='overview' class='heading'>Overview</h2>
+
+<p>The form consists of up to four main sections:</p>
+
+<ol>
+<li><strong>Bug Description Section</strong>: A text editor where users describe the issue</li>
+<li><strong>Custom Fields Section</strong>: Optional additional input fields (if configured)</li>
+<li><strong>Pre-filled Data Section</strong>: Automatically collected device and app information (if enabled)</li>
+<li><strong>Log Files Information Section</strong>: Details about log files that will be included in the report (if enabled)</li>
+</ol>
+<h2 id='usage' class='heading'>Usage</h2>
+<h3 id='basic-usage' class='heading'>Basic Usage</h3>
+<pre class="highlight swift"><code><span class="k">let</span> <span class="nv">config</span> <span class="o">=</span> <span class="kt">ReporterViewConfiguration</span><span class="p">(</span>
+    <span class="nv">sendAction</span><span class="p">:</span> <span class="p">{</span> <span class="n">issueText</span><span class="p">,</span> <span class="n">preFilledData</span><span class="p">,</span> <span class="n">customFields</span><span class="p">,</span> <span class="n">logInfo</span> <span class="k">in</span>
+        <span class="c1">// Handle the bug report submission</span>
+        <span class="nf">print</span><span class="p">(</span><span class="s">"Issue: </span><span class="se">\(</span><span class="n">issueText</span><span class="se">)</span><span class="s">"</span><span class="p">)</span>
+        <span class="c1">// Process the collected data and send the report</span>
+    <span class="p">}</span>
+<span class="p">)</span>
+
+<span class="kt">ReporterFormView</span><span class="p">(</span><span class="nv">configuration</span><span class="p">:</span> <span class="n">config</span><span class="p">)</span>
+</code></pre>
+<h3 id='advanced-usage-with-custom-fields-and-log-files' class='heading'>Advanced Usage with Custom Fields and Log Files</h3>
+<pre class="highlight swift"><code><span class="k">let</span> <span class="nv">config</span> <span class="o">=</span> <span class="kt">ReporterViewConfiguration</span><span class="p">(</span>
+    <span class="nv">navigationBarTitle</span><span class="p">:</span> <span class="s">"Report Problem"</span><span class="p">,</span>
+    <span class="nv">customFields</span><span class="p">:</span> <span class="p">[</span>
+        <span class="kt">CustomFormFieldWrapper</span><span class="p">(</span><span class="nv">field</span><span class="p">:</span> <span class="kt">EmailFormField</span><span class="p">()),</span>
+        <span class="kt">CustomFormFieldWrapper</span><span class="p">(</span><span class="nv">field</span><span class="p">:</span> <span class="kt">CategoryField</span><span class="p">())</span>
+    <span class="p">],</span>
+    <span class="nv">showPrefilledDataSection</span><span class="p">:</span> <span class="kc">true</span><span class="p">,</span>
+    <span class="nv">showLogFilesInformation</span><span class="p">:</span> <span class="kc">true</span><span class="p">,</span>
+    <span class="nv">sendAction</span><span class="p">:</span> <span class="p">{</span> <span class="n">issueText</span><span class="p">,</span> <span class="n">preFilledData</span><span class="p">,</span> <span class="n">customFields</span><span class="p">,</span> <span class="n">logInfo</span> <span class="k">in</span>
+        <span class="c1">// Handle the bug report submission with all collected data</span>
+        <span class="nf">submitBugReport</span><span class="p">(</span>
+            <span class="nv">description</span><span class="p">:</span> <span class="n">issueText</span><span class="p">,</span>
+            <span class="nv">deviceInfo</span><span class="p">:</span> <span class="n">preFilledData</span><span class="p">,</span>
+            <span class="nv">customData</span><span class="p">:</span> <span class="n">customFields</span><span class="p">,</span>
+            <span class="nv">logs</span><span class="p">:</span> <span class="n">logInfo</span><span class="o">.</span><span class="mi">1</span>
+        <span class="p">)</span>
+    <span class="p">}</span>
+<span class="p">)</span>
+
+<span class="kt">ReporterFormView</span><span class="p">(</span><span class="nv">configuration</span><span class="p">:</span> <span class="n">config</span><span class="p">)</span>
+</code></pre>
+<h2 id='important' class='heading'>Important</h2>
+
+<p>The <code>ReporterFormView</code> requires a custom <code>sendAction</code> closure to be provided in the configuration.
+There is no default send report implementation - you must handle the report submission yourself
+by implementing the <code>sendAction</code> closure in your <code><a href="../Classes/ReporterViewConfiguration.html">ReporterViewConfiguration</a></code>.</p>
+<h2 id='features' class='heading'>Features</h2>
+
+<ul>
+<li><strong>Self-Contained State</strong>: The view manages its own issue text state internally</li>
+<li><strong>Responsive Text Input</strong>: The bug description field uses a <code>TextEditor</code> with placeholder text</li>
+<li><strong>Dynamic Sections</strong>: Sections appear/disappear based on configuration settings</li>
+<li><strong>Localized Content</strong>: All text content supports localization through the <code>localized()</code> extension</li>
+<li><strong>Sorted Data Display</strong>: Pre-filled data and log files information are automatically sorted alphabetically by key</li>
+<li><strong>Navigation Integration</strong>: Includes navigation title and works within navigation stacks</li>
+<li><strong>Log Files Display</strong>: Shows detailed information about log files that will be included in bug reports</li>
+</ul>
+<h2 id='topics' class='heading'>Topics</h2>
+<h3 id='creating-a-reporter-form-view' class='heading'>Creating a Reporter Form View</h3>
+
+<ul>
+<li><code>init(configuration:)</code></li>
+</ul>
+<h3 id='view-properties' class='heading'>View Properties</h3>
+
+<ul>
+<li><code>body</code></li>
+<li><code>issueText</code></li>
+<li><code>configuration</code></li>
+</ul>
+
+          </div>
+        </section>
+
+        <section class="section">
+          <div class="section-content">
+            <div class="task-group">
+              <ul class="item-container">
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:14SimpleLoggerUI16ReporterFormViewV13configurationAA0dF13ConfigurationCvp"></a>
+                    <a name="//apple_ref/swift/Property/configuration" class="dashAnchor"></a>
+                    <a class="token" href="#/s:14SimpleLoggerUI16ReporterFormViewV13configurationAA0dF13ConfigurationCvp">configuration</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>The configuration object that defines the form&rsquo;s appearance and behavior.</p>
+
+<p>This constant contains all customization options for the form, including
+text content, section visibility, custom fields, and pre-filled data settings.
+The configuration is set during initialization and remains constant throughout
+the view&rsquo;s lifecycle.</p>
+<h2 id='see-also' class='heading'>See Also</h2>
+
+<ul>
+<li><code><a href="../Classes/ReporterViewConfiguration.html">ReporterViewConfiguration</a></code></li>
+</ul>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">@MainActor</span>
+<span class="kd">public</span> <span class="k">let</span> <span class="nv">configuration</span><span class="p">:</span> <span class="kt"><a href="../Classes/ReporterViewConfiguration.html">ReporterViewConfiguration</a></span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:14SimpleLoggerUI16ReporterFormViewV4bodyQrvp"></a>
+                    <a name="//apple_ref/swift/Property/body" class="dashAnchor"></a>
+                    <a class="token" href="#/s:14SimpleLoggerUI16ReporterFormViewV4bodyQrvp">body</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>The main view body that renders the bug reporting form.</p>
+
+<p>The body creates a <code>NavigationStack</code> containing a <code>Form</code> with up to four sections:</p>
+
+<ul>
+<li>A bug description section with a text editor</li>
+<li>An optional custom fields section (if configured)</li>
+<li>An optional pre-filled data section (if enabled and data exists)</li>
+<li>An optional log files information section (if enabled and log files data exists)</li>
+</ul>
+
+<p>All text content is localized using the <code>localized()</code> extension, and sections
+are conditionally displayed based on the configuration settings. The log files
+section displays information about log files that will be automatically included
+in the bug report for debugging purposes.</p>
+
+<p>A &ldquo;Send&rdquo; button is added to the trailing navigation bar item that handles report submission.</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">@MainActor</span>
+<span class="kd">public</span> <span class="k">var</span> <span class="nv">body</span><span class="p">:</span> <span class="kd">some</span> <span class="kt">View</span> <span class="p">{</span> <span class="k">get</span> <span class="p">}</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+              </ul>
+            </div>
+          </div>
+        </section>
+
+      </article>
+    </div>
+    <section class="footer">
+      <p>&copy; 2025 <a class="link" href="" target="_blank" rel="external noopener"></a>. All rights reserved. (Last updated: 2025-09-14)</p>
+      <p>Generated by <a class="link" href="https://github.com/realm/jazzy" target="_blank" rel="external noopener">jazzy ♪♫ v0.15.3</a>, a <a class="link" href="https://realm.io" target="_blank" rel="external noopener">Realm</a> project.</p>
+    </section>
+  </body>
+</html>

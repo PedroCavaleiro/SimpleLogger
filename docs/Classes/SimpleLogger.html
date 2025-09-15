@@ -50,6 +50,9 @@
             <a class="nav-group-name-link" href="../Classes.html">Classes</a>
             <ul class="nav-group-tasks">
               <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../Classes/ReporterViewConfiguration.html">ReporterViewConfiguration</a>
+              </li>
+              <li class="nav-group-task">
                 <a class="nav-group-task-link" href="../Classes/SimpleLogger.html">SimpleLogger</a>
               </li>
             </ul>
@@ -63,13 +66,33 @@
             </ul>
           </li>
           <li class="nav-group-name">
+            <a class="nav-group-name-link" href="../Protocols.html">Protocols</a>
+            <ul class="nav-group-tasks">
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../Protocols/CustomFormField.html">CustomFormField</a>
+              </li>
+            </ul>
+          </li>
+          <li class="nav-group-name">
             <a class="nav-group-name-link" href="../Structs.html">Structures</a>
             <ul class="nav-group-tasks">
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../Structs/CustomFormFieldWrapper.html">CustomFormFieldWrapper</a>
+              </li>
               <li class="nav-group-task">
                 <a class="nav-group-task-link" href="../Structs/LogEntry.html">LogEntry</a>
               </li>
               <li class="nav-group-task">
                 <a class="nav-group-task-link" href="../Structs/LogFileSummary.html">LogFileSummary</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../Structs/PreFilledDataComponent.html">PreFilledDataComponent</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../Structs/ReporterFormNavWrapper.html">ReporterFormNavWrapper</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../Structs/ReporterFormView.html">ReporterFormView</a>
               </li>
             </ul>
           </li>
@@ -823,6 +846,90 @@ component-specific cleanup or when addressing storage concerns for particular mo
                     </section>
                   </div>
                 </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:12SimpleLoggerAAC11gatherFiles10Foundation4DataVSgyFZ"></a>
+                    <a name="//apple_ref/swift/Method/gatherFiles()" class="dashAnchor"></a>
+                    <a class="token" href="#/s:12SimpleLoggerAAC11gatherFiles10Foundation4DataVSgyFZ">gatherFiles()</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Creates a compressed ZIP archive containing all log files for export or transmission.</p>
+
+<p>Generates a complete collection of all JSON log files in a single ZIP archive, making it
+convenient for sharing logs with support teams, backing up log data, or transmitting
+diagnostic information. This method handles the entire archival process automatically,
+including temporary file management and cleanup.</p>
+
+<p>The archival process includes:</p>
+
+<ol>
+<li><strong>Directory Enumeration</strong>: Scans the logging directory for all JSON log files</li>
+<li><strong>Archive Creation</strong>: Creates a temporary ZIP file with a unique identifier</li>
+<li><strong>File Compression</strong>: Adds each log file to the archive with DEFLATE compression</li>
+<li><strong>Data Extraction</strong>: Reads the completed ZIP archive into memory as Data</li>
+<li><strong>Cleanup</strong>: Automatically removes temporary files after processing</li>
+</ol>
+<h2 id='use-cases' class='heading'>Use Cases</h2>
+
+<ul>
+<li><strong>Bug Reports</strong>: Attach comprehensive log data to support tickets</li>
+<li><strong>Backup Operations</strong>: Create portable backups of application logs</li>
+<li><strong>Remote Diagnostics</strong>: Send complete log history to development teams</li>
+<li><strong>Compliance</strong>: Generate audit trails for regulatory requirements</li>
+</ul>
+<h2 id='performance-considerations' class='heading'>Performance Considerations</h2>
+
+<p>This method loads all log files into memory simultaneously and may consume significant
+resources if log files are large or numerous. Consider using <code><a href="../Classes/SimpleLogger.html#/s:12SimpleLoggerAAC9clearLogsyyFZ">clearLogs()</a></code> periodically
+to manage log file sizes.</p>
+<h2 id='example' class='heading'>Example</h2>
+<pre class="highlight swift"><code><span class="k">if</span> <span class="k">let</span> <span class="nv">zipData</span> <span class="o">=</span> <span class="kt">SimpleLogger</span><span class="o">.</span><span class="nf">gatherFiles</span><span class="p">()</span> <span class="p">{</span>
+    <span class="c1">// Save to file, share via email, or upload to server</span>
+    <span class="k">try</span> <span class="n">zipData</span><span class="o">.</span><span class="nf">write</span><span class="p">(</span><span class="nv">to</span><span class="p">:</span> <span class="n">exportURL</span><span class="p">)</span>
+<span class="p">}</span> <span class="k">else</span> <span class="p">{</span>
+    <span class="nf">print</span><span class="p">(</span><span class="s">"No log files available for export"</span><span class="p">)</span>
+<span class="p">}</span>
+</code></pre>
+<div class="aside aside-note">
+    <p class="aside-title">Note</p>
+    Creates and automatically cleans up temporary files during the archival process
+
+</div><div class="aside aside-important">
+    <p class="aside-title">Important</p>
+    Returns <code>nil</code> if no log files exist or if any step in the process fails
+
+</div>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">@MainActor</span>
+<span class="kd">public</span> <span class="kd">static</span> <span class="kd">func</span> <span class="nf">gatherFiles</span><span class="p">()</span> <span class="o">-&gt;</span> <span class="kt">Data</span><span class="p">?</span></code></pre>
+
+                        </div>
+                      </div>
+                      <div>
+                        <h4>Return Value</h4>
+                        <p>Compressed ZIP archive as <code>Data</code> containing all log files, or <code>nil</code> if:
+
+<ul>
+<li>Document directory is inaccessible</li>
+<li>Logging directory doesn&rsquo;t exist or is empty</li>
+<li>ZIP archive creation fails</li>
+<li>File I/O operations encounter errors</li>
+</ul></p>
+                      </div>
+                    </section>
+                  </div>
+                </li>
               </ul>
             </div>
           </div>
@@ -831,7 +938,7 @@ component-specific cleanup or when addressing storage concerns for particular mo
       </article>
     </div>
     <section class="footer">
-      <p>&copy; 2025 <a class="link" href="" target="_blank" rel="external noopener"></a>. All rights reserved. (Last updated: 2025-09-11)</p>
+      <p>&copy; 2025 <a class="link" href="" target="_blank" rel="external noopener"></a>. All rights reserved. (Last updated: 2025-09-14)</p>
       <p>Generated by <a class="link" href="https://github.com/realm/jazzy" target="_blank" rel="external noopener">jazzy ♪♫ v0.15.3</a>, a <a class="link" href="https://realm.io" target="_blank" rel="external noopener">Realm</a> project.</p>
     </section>
   </body>

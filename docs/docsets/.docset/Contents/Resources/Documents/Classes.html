@@ -48,6 +48,9 @@
             <a class="nav-group-name-link" href="Classes.html">Classes</a>
             <ul class="nav-group-tasks">
               <li class="nav-group-task">
+                <a class="nav-group-task-link" href="Classes/ReporterViewConfiguration.html">ReporterViewConfiguration</a>
+              </li>
+              <li class="nav-group-task">
                 <a class="nav-group-task-link" href="Classes/SimpleLogger.html">SimpleLogger</a>
               </li>
             </ul>
@@ -61,13 +64,33 @@
             </ul>
           </li>
           <li class="nav-group-name">
+            <a class="nav-group-name-link" href="Protocols.html">Protocols</a>
+            <ul class="nav-group-tasks">
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="Protocols/CustomFormField.html">CustomFormField</a>
+              </li>
+            </ul>
+          </li>
+          <li class="nav-group-name">
             <a class="nav-group-name-link" href="Structs.html">Structures</a>
             <ul class="nav-group-tasks">
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="Structs/CustomFormFieldWrapper.html">CustomFormFieldWrapper</a>
+              </li>
               <li class="nav-group-task">
                 <a class="nav-group-task-link" href="Structs/LogEntry.html">LogEntry</a>
               </li>
               <li class="nav-group-task">
                 <a class="nav-group-task-link" href="Structs/LogFileSummary.html">LogFileSummary</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="Structs/PreFilledDataComponent.html">PreFilledDataComponent</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="Structs/ReporterFormNavWrapper.html">ReporterFormNavWrapper</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="Structs/ReporterFormView.html">ReporterFormView</a>
               </li>
             </ul>
           </li>
@@ -153,6 +176,144 @@ with comprehensive audit trails.</p>
                     </section>
                   </div>
                 </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:14SimpleLoggerUI25ReporterViewConfigurationC"></a>
+                    <a name="//apple_ref/swift/Class/ReporterViewConfiguration" class="dashAnchor"></a>
+                    <a class="token" href="#/s:14SimpleLoggerUI25ReporterViewConfigurationC">ReporterViewConfiguration</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>A configuration class that defines the appearance and behavior of the bug reporter view.</p>
+
+<p><code>ReporterViewConfiguration</code> is an <code>ObservableObject</code> that provides comprehensive customization
+options for the bug reporting interface. It allows you to configure section headers, footers,
+placeholder text, pre-filled data, custom form fields, automatic device information inclusion,
+log files information display, and send report functionality.</p>
+<h2 id='overview' class='heading'>Overview</h2>
+
+<p>The configuration is divided into several functional areas:</p>
+
+<ul>
+<li><strong>Navigation and UI Text</strong>: Customize titles, headers, and footers</li>
+<li><strong>Pre-filled Data</strong>: Automatically include device and app information</li>
+<li><strong>Custom Form Fields</strong>: Add additional input fields as needed</li>
+<li><strong>Log Files Information</strong>: Display and include log file details</li>
+<li><strong>Send Report Action</strong>: Configure report submission behavior and button text</li>
+<li><strong>Behavior Control</strong>: Toggle visibility and inclusion of various sections</li>
+</ul>
+<h2 id='usage' class='heading'>Usage</h2>
+<h3 id='basic-configuration' class='heading'>Basic Configuration</h3>
+<pre class="highlight swift"><code><span class="k">let</span> <span class="nv">config</span> <span class="o">=</span> <span class="kt">ReporterViewConfiguration</span><span class="p">(</span>
+    <span class="nv">navigationBarTitle</span><span class="p">:</span> <span class="s">"Report Bug"</span><span class="p">,</span>
+    <span class="nv">bgSectionHeader</span><span class="p">:</span> <span class="s">"What happened?"</span><span class="p">,</span>
+    <span class="nv">showPrefilledDataSection</span><span class="p">:</span> <span class="kc">true</span><span class="p">,</span>
+    <span class="nv">showLogFilesInformation</span><span class="p">:</span> <span class="kc">true</span><span class="p">,</span>
+    <span class="nv">sendAction</span><span class="p">:</span> <span class="p">{</span> <span class="n">issueText</span><span class="p">,</span> <span class="n">preFilledData</span><span class="p">,</span> <span class="n">customFields</span><span class="p">,</span> <span class="n">logInfo</span> <span class="k">in</span>
+        <span class="c1">// Handle the bug report submission</span>
+        <span class="nf">print</span><span class="p">(</span><span class="s">"Issue: </span><span class="se">\(</span><span class="n">issueText</span><span class="se">)</span><span class="s">"</span><span class="p">)</span>
+        <span class="c1">// Process the collected data and send the report</span>
+    <span class="p">}</span>
+<span class="p">)</span>
+</code></pre>
+<h3 id='advanced-configuration-with-custom-send-action' class='heading'>Advanced Configuration with Custom Send Action</h3>
+<pre class="highlight swift"><code><span class="k">let</span> <span class="nv">config</span> <span class="o">=</span> <span class="kt">ReporterViewConfiguration</span><span class="p">(</span>
+    <span class="nv">customFields</span><span class="p">:</span> <span class="p">[</span><span class="kt">CustomFormFieldWrapper</span><span class="p">(</span><span class="nv">field</span><span class="p">:</span> <span class="kt">EmailFormField</span><span class="p">())],</span>
+    <span class="nv">includeAppVersion</span><span class="p">:</span> <span class="kc">true</span><span class="p">,</span>
+    <span class="nv">includeDeviceModel</span><span class="p">:</span> <span class="kc">true</span><span class="p">,</span>
+    <span class="nv">showLogFilesInformation</span><span class="p">:</span> <span class="kc">true</span><span class="p">,</span>
+    <span class="nv">sendAction</span><span class="p">:</span> <span class="p">{</span> <span class="n">issueText</span><span class="p">,</span> <span class="n">preFilledData</span><span class="p">,</span> <span class="n">customFields</span><span class="p">,</span> <span class="n">logStats</span> <span class="k">in</span>
+        <span class="c1">// Custom report submission logic</span>
+        <span class="kt">MyBugReportAPI</span><span class="o">.</span><span class="nf">submit</span><span class="p">(</span>
+            <span class="nv">description</span><span class="p">:</span> <span class="n">issueText</span><span class="p">,</span>
+            <span class="nv">deviceInfo</span><span class="p">:</span> <span class="n">preFilledData</span><span class="p">,</span>
+            <span class="nv">additionalFields</span><span class="p">:</span> <span class="n">customFields</span><span class="p">,</span>
+            <span class="nv">logInfo</span><span class="p">:</span> <span class="n">logStats</span>
+        <span class="p">)</span>
+    <span class="p">},</span>
+    <span class="nv">sendButtonText</span><span class="p">:</span> <span class="s">"Submit Report"</span>
+<span class="p">)</span>
+</code></pre>
+<h2 id='important' class='heading'>Important</h2>
+
+<p>The <code>sendAction</code> closure is required for the reporter view to function properly.
+There is no default send report implementation - you must provide your own custom
+action to handle report submission.</p>
+<h2 id='topics' class='heading'>Topics</h2>
+<h3 id='creating-a-configuration' class='heading'>Creating a Configuration</h3>
+
+<ul>
+<li><code>init(navigationBarTitle:bgSectionHeader:bgSectionFooter:bgPlaceholderText:showPrefilledDataSection:sendPreFilledData:preFilledDataSectionHeader:preFilledDataSectionFooter:preFilledData:preFilledDataComponentBuilder:customFields:customFieldsSectionHeader:customFieldsSectionFooter:showLogFilesInformation:logFilesInformationSectionHeader:logFilesInformationSectionFooter:logFilesInformationComponentBuilder:sendAction:sendButtonText:snapshotObjects:includeAppVersion:includeDeviceOS:includeDeviceModel:)</code></li>
+</ul>
+<h3 id='navigation-configuration' class='heading'>Navigation Configuration</h3>
+
+<ul>
+<li><code>navigationBarTitle</code></li>
+</ul>
+<h3 id='bug-description-section' class='heading'>Bug Description Section</h3>
+
+<ul>
+<li><code>bgSectionHeader</code></li>
+<li><code>bgSectionFooter</code></li>
+<li><code>bgPlaceholderText</code></li>
+</ul>
+<h3 id='pre-filled-data-section' class='heading'>Pre-filled Data Section</h3>
+
+<ul>
+<li><code>showPrefilledDataSection</code></li>
+<li><code>sendPreFilledData</code></li>
+<li><code>preFilledDataSectionHeader</code></li>
+<li><code>preFilledDataSectionFooter</code></li>
+<li><code>preFilledData</code></li>
+<li><code>preFilledDataComponentBuilder</code></li>
+</ul>
+<h3 id='custom-form-fields' class='heading'>Custom Form Fields</h3>
+
+<ul>
+<li><code>customFields</code></li>
+<li><code>customFieldsSectionHeader</code></li>
+<li><code>customFieldsSectionFooter</code></li>
+</ul>
+<h3 id='log-files-information' class='heading'>Log Files Information</h3>
+
+<ul>
+<li><code>showLogFilesInformation</code></li>
+<li><code>logFilesInformationSectionHeader</code></li>
+<li><code>logFilesInformationSectionFooter</code></li>
+<li><code>logFilesInformationComponentBuilder</code></li>
+</ul>
+<h3 id='send-report-configuration' class='heading'>Send Report Configuration</h3>
+
+<ul>
+<li><code>sendAction</code></li>
+<li><code>sendButtonText</code></li>
+<li><code>snapshotObjects</code></li>
+</ul>
+<h3 id='data-retrieval' class='heading'>Data Retrieval</h3>
+
+<ul>
+<li><code>getCustomFieldValues()</code></li>
+</ul>
+
+                        <a href="Classes/ReporterViewConfiguration.html" class="slightly-smaller">See more</a>
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">@MainActor</span>
+<span class="kd">public</span> <span class="kd">class</span> <span class="kt">ReporterViewConfiguration</span> <span class="p">:</span> <span class="kt">ObservableObject</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
               </ul>
             </div>
           </div>
@@ -161,7 +322,7 @@ with comprehensive audit trails.</p>
       </article>
     </div>
     <section class="footer">
-      <p>&copy; 2025 <a class="link" href="" target="_blank" rel="external noopener"></a>. All rights reserved. (Last updated: 2025-09-11)</p>
+      <p>&copy; 2025 <a class="link" href="" target="_blank" rel="external noopener"></a>. All rights reserved. (Last updated: 2025-09-14)</p>
       <p>Generated by <a class="link" href="https://github.com/realm/jazzy" target="_blank" rel="external noopener">jazzy ♪♫ v0.15.3</a>, a <a class="link" href="https://realm.io" target="_blank" rel="external noopener">Realm</a> project.</p>
     </section>
   </body>

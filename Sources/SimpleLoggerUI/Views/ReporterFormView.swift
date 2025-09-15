@@ -204,13 +204,23 @@ public struct ReporterFormView: View {
             
         }
         .navigationTitle(configuration.navigationBarTitle.localized())
+        #if !os(macOS)
         .navigationBarTitleDisplayMode(.inline)
+        #endif
         .toolbar {
-            ToolbarItem(placement: .navigationBarTrailing) {
+            #if os(macOS)
+            ToolbarItem(placement: .automatic) {
                 Button(configuration.sendButtonText.localized()) {
                     handleSendReport()
                 }
             }
+            #else
+            ToolbarItem(placement: .topBarTrailing) {
+                Button(configuration.sendButtonText.localized()) {
+                    handleSendReport()
+                }
+            }
+            #endif
         }
     }
     

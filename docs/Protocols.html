@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
   <head>
-    <title>Enumerations  Reference</title>
+    <title>Protocols  Reference</title>
     <link rel="stylesheet" type="text/css" href="css/jazzy.css" />
     <link rel="stylesheet" type="text/css" href="css/highlight.css" />
     <meta charset="utf-8">
@@ -14,9 +14,9 @@
   </head>
   <body>
 
-    <a name="//apple_ref/swift/Section/Enumerations" class="dashAnchor"></a>
+    <a name="//apple_ref/swift/Section/Protocols" class="dashAnchor"></a>
 
-    <a title="Enumerations  Reference"></a>
+    <a title="Protocols  Reference"></a>
 
     <header class="header">
       <p class="header-col header-col--primary">
@@ -38,7 +38,7 @@
     <p class="breadcrumbs">
       <a class="breadcrumb" href="index.html">Index</a>
       <img class="carat" src="img/carat.png" alt=""/>
-      Enumerations  Reference
+      Protocols  Reference
     </p>
 
     <div class="content-wrapper">
@@ -100,8 +100,8 @@
 
         <section class="section">
           <div class="section-content top-matter">
-            <h1>Enumerations</h1>
-            <p>The following enumerations are available globally.</p>
+            <h1>Protocols</h1>
+            <p>The following protocols are available globally.</p>
 
           </div>
         </section>
@@ -113,9 +113,9 @@
                 <li class="item">
                   <div>
                     <code>
-                    <a name="/s:12SimpleLogger8LogLevelO"></a>
-                    <a name="//apple_ref/swift/Enum/LogLevel" class="dashAnchor"></a>
-                    <a class="token" href="#/s:12SimpleLogger8LogLevelO">LogLevel</a>
+                    <a name="/s:14SimpleLoggerUI15CustomFormFieldP"></a>
+                    <a name="//apple_ref/swift/Protocol/CustomFormField" class="dashAnchor"></a>
+                    <a class="token" href="#/s:14SimpleLoggerUI15CustomFormFieldP">CustomFormField</a>
                     </code>
                   </div>
                   <div class="height-container">
@@ -123,29 +123,44 @@
                     <section class="section">
                       <div class="pointer"></div>
                       <div class="abstract">
-                        <p>Enumeration defining log severity levels for message categorization.</p>
+                        <p>A protocol that defines the requirements for custom form fields in the SimpleLogger UI.</p>
 
-<p>Provides hierarchical logging levels to enable appropriate filtering, display,
-and processing of log messages based on their importance and context.</p>
-<h2 id='log-levels' class='heading'>Log Levels</h2>
+<p><code>CustomFormField</code> allows you to create custom SwiftUI views that can be integrated
+into forms while providing a standardized way to access their key identifier and current value.
+This protocol is essential for building dynamic forms where field values need to be collected
+and processed uniformly.</p>
+<h2 id='conforming-to-customformfield' class='heading'>Conforming to CustomFormField</h2>
+
+<p>To create a custom form field, implement both required properties:</p>
+<pre class="highlight swift"><code><span class="kd">struct</span> <span class="kt">EmailField</span><span class="p">:</span> <span class="kt">CustomFormField</span> <span class="p">{</span>
+    <span class="kd">@State</span> <span class="kd">private</span> <span class="k">var</span> <span class="nv">email</span> <span class="o">=</span> <span class="s">""</span>
+
+    <span class="k">var</span> <span class="nv">fieldKey</span><span class="p">:</span> <span class="kt">String</span> <span class="p">{</span> <span class="s">"email"</span> <span class="p">}</span>
+    <span class="k">var</span> <span class="nv">fieldValue</span><span class="p">:</span> <span class="kt">String</span> <span class="p">{</span> <span class="n">email</span> <span class="p">}</span>
+
+    <span class="k">var</span> <span class="nv">body</span><span class="p">:</span> <span class="kd">some</span> <span class="kt">View</span> <span class="p">{</span>
+        <span class="kt">TextField</span><span class="p">(</span><span class="s">"Enter email"</span><span class="p">,</span> <span class="nv">text</span><span class="p">:</span> <span class="n">$email</span><span class="p">)</span>
+            <span class="o">.</span><span class="nf">textFieldStyle</span><span class="p">(</span><span class="kt">RoundedBorderTextFieldStyle</span><span class="p">())</span>
+            <span class="o">.</span><span class="nf">keyboardType</span><span class="p">(</span><span class="o">.</span><span class="n">emailAddress</span><span class="p">)</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+</code></pre>
+<h2 id='topics' class='heading'>Topics</h2>
+<h3 id='required-properties' class='heading'>Required Properties</h3>
 
 <ul>
-<li><strong>debug</strong>: Detailed information for development and troubleshooting</li>
-<li><strong>info</strong>: General informational messages about application flow</li>
-<li><strong>warning</strong>: Potentially harmful situations that don&rsquo;t prevent operation</li>
-<li><strong>error</strong>: Error conditions that may affect functionality</li>
-<li><strong>critical</strong>: Severe errors that may cause application failure</li>
+<li><code>fieldKey</code></li>
+<li><code>fieldValue</code></li>
 </ul>
 
-<p>Each level represents increasing severity and importance for system monitoring.</p>
-
-                        <a href="Enums/LogLevel.html" class="slightly-smaller">See more</a>
+                        <a href="Protocols/CustomFormField.html" class="slightly-smaller">See more</a>
                       </div>
                       <div class="declaration">
                         <h4>Declaration</h4>
                         <div class="language">
                           <p class="aside-title">Swift</p>
-                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">enum</span> <span class="kt">LogLevel</span> <span class="p">:</span> <span class="kt">String</span><span class="p">,</span> <span class="kt">Codable</span><span class="p">,</span> <span class="kt">CaseIterable</span><span class="p">,</span> <span class="kt">Identifiable</span></code></pre>
+                          <pre class="highlight swift"><code><span class="kd">@MainActor</span>
+<span class="kd">public</span> <span class="kd">protocol</span> <span class="kt">CustomFormField</span> <span class="p">:</span> <span class="kt">View</span></code></pre>
 
                         </div>
                       </div>

@@ -1,0 +1,1485 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>ReporterViewConfiguration Class Reference</title>
+    <link rel="stylesheet" type="text/css" href="../css/jazzy.css" />
+    <link rel="stylesheet" type="text/css" href="../css/highlight.css" />
+    <meta charset="utf-8">
+    <script src="../js/jquery.min.js" defer></script>
+    <script src="../js/jazzy.js" defer></script>
+    
+    <script src="../js/lunr.min.js" defer></script>
+    <script src="../js/typeahead.jquery.js" defer></script>
+    <script src="../js/jazzy.search.js" defer></script>
+  </head>
+  <body>
+
+    <a name="//apple_ref/swift/Class/ReporterViewConfiguration" class="dashAnchor"></a>
+
+    <a title="ReporterViewConfiguration Class Reference"></a>
+
+    <header class="header">
+      <p class="header-col header-col--primary">
+        <a class="header-link" href="../index.html">
+           Docs
+        </a>
+         (100% documented)
+      </p>
+    
+      <div class="header-col--secondary">
+        <form role="search" action="../search.json">
+          <input type="text" placeholder="Search documentation" data-typeahead>
+        </form>
+      </div>
+    
+    
+    </header>
+
+    <p class="breadcrumbs">
+      <a class="breadcrumb" href="../index.html">Index</a>
+      <img class="carat" src="../img/carat.png" alt=""/>
+      <a class="breadcrumb" href="../Classes.html">Classes</a>
+      <img class="carat" src="../img/carat.png" alt=""/>
+      SimpleLoggerUI.ReporterViewConfiguration Class Reference
+    </p>
+
+    <div class="content-wrapper">
+      <nav class="navigation">
+        <ul class="nav-groups">
+          <li class="nav-group-name">
+            <a class="nav-group-name-link" href="../Classes.html">Classes</a>
+            <ul class="nav-group-tasks">
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../Classes/ReporterViewConfiguration.html">ReporterViewConfiguration</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../Classes/SimpleLogger.html">SimpleLogger</a>
+              </li>
+            </ul>
+          </li>
+          <li class="nav-group-name">
+            <a class="nav-group-name-link" href="../Enums.html">Enumerations</a>
+            <ul class="nav-group-tasks">
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../Enums/LogLevel.html">LogLevel</a>
+              </li>
+            </ul>
+          </li>
+          <li class="nav-group-name">
+            <a class="nav-group-name-link" href="../Protocols.html">Protocols</a>
+            <ul class="nav-group-tasks">
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../Protocols/CustomFormField.html">CustomFormField</a>
+              </li>
+            </ul>
+          </li>
+          <li class="nav-group-name">
+            <a class="nav-group-name-link" href="../Structs.html">Structures</a>
+            <ul class="nav-group-tasks">
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../Structs/CustomFormFieldWrapper.html">CustomFormFieldWrapper</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../Structs/LogEntry.html">LogEntry</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../Structs/LogFileSummary.html">LogFileSummary</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../Structs/PreFilledDataComponent.html">PreFilledDataComponent</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../Structs/ReporterFormNavWrapper.html">ReporterFormNavWrapper</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../Structs/ReporterFormView.html">ReporterFormView</a>
+              </li>
+            </ul>
+          </li>
+        </ul>
+      </nav>
+      <article class="main-content">
+
+        <section class="section">
+          <div class="section-content top-matter">
+            <h1>ReporterViewConfiguration</h1>
+              <div class="declaration">
+                <div class="language">
+                  
+                  <pre class="highlight swift"><code><span class="kd">@MainActor</span>
+<span class="kd">public</span> <span class="kd">class</span> <span class="kt">ReporterViewConfiguration</span> <span class="p">:</span> <span class="kt">ObservableObject</span></code></pre>
+
+                </div>
+              </div>
+            <p>A configuration class that defines the appearance and behavior of the bug reporter view.</p>
+
+<p><code>ReporterViewConfiguration</code> is an <code>ObservableObject</code> that provides comprehensive customization
+options for the bug reporting interface. It allows you to configure section headers, footers,
+placeholder text, pre-filled data, custom form fields, automatic device information inclusion,
+log files information display, and send report functionality.</p>
+<h2 id='overview' class='heading'>Overview</h2>
+
+<p>The configuration is divided into several functional areas:</p>
+
+<ul>
+<li><strong>Navigation and UI Text</strong>: Customize titles, headers, and footers</li>
+<li><strong>Pre-filled Data</strong>: Automatically include device and app information</li>
+<li><strong>Custom Form Fields</strong>: Add additional input fields as needed</li>
+<li><strong>Log Files Information</strong>: Display and include log file details</li>
+<li><strong>Send Report Action</strong>: Configure report submission behavior and button text</li>
+<li><strong>Behavior Control</strong>: Toggle visibility and inclusion of various sections</li>
+</ul>
+<h2 id='usage' class='heading'>Usage</h2>
+<h3 id='basic-configuration' class='heading'>Basic Configuration</h3>
+<pre class="highlight swift"><code><span class="k">let</span> <span class="nv">config</span> <span class="o">=</span> <span class="kt">ReporterViewConfiguration</span><span class="p">(</span>
+    <span class="nv">navigationBarTitle</span><span class="p">:</span> <span class="s">"Report Bug"</span><span class="p">,</span>
+    <span class="nv">bgSectionHeader</span><span class="p">:</span> <span class="s">"What happened?"</span><span class="p">,</span>
+    <span class="nv">showPrefilledDataSection</span><span class="p">:</span> <span class="kc">true</span><span class="p">,</span>
+    <span class="nv">showLogFilesInformation</span><span class="p">:</span> <span class="kc">true</span><span class="p">,</span>
+    <span class="nv">sendAction</span><span class="p">:</span> <span class="p">{</span> <span class="n">issueText</span><span class="p">,</span> <span class="n">preFilledData</span><span class="p">,</span> <span class="n">customFields</span><span class="p">,</span> <span class="n">logInfo</span> <span class="k">in</span>
+        <span class="c1">// Handle the bug report submission</span>
+        <span class="nf">print</span><span class="p">(</span><span class="s">"Issue: </span><span class="se">\(</span><span class="n">issueText</span><span class="se">)</span><span class="s">"</span><span class="p">)</span>
+        <span class="c1">// Process the collected data and send the report</span>
+    <span class="p">}</span>
+<span class="p">)</span>
+</code></pre>
+<h3 id='advanced-configuration-with-custom-send-action' class='heading'>Advanced Configuration with Custom Send Action</h3>
+<pre class="highlight swift"><code><span class="k">let</span> <span class="nv">config</span> <span class="o">=</span> <span class="kt">ReporterViewConfiguration</span><span class="p">(</span>
+    <span class="nv">customFields</span><span class="p">:</span> <span class="p">[</span><span class="kt">CustomFormFieldWrapper</span><span class="p">(</span><span class="nv">field</span><span class="p">:</span> <span class="kt">EmailFormField</span><span class="p">())],</span>
+    <span class="nv">includeAppVersion</span><span class="p">:</span> <span class="kc">true</span><span class="p">,</span>
+    <span class="nv">includeDeviceModel</span><span class="p">:</span> <span class="kc">true</span><span class="p">,</span>
+    <span class="nv">showLogFilesInformation</span><span class="p">:</span> <span class="kc">true</span><span class="p">,</span>
+    <span class="nv">sendAction</span><span class="p">:</span> <span class="p">{</span> <span class="n">issueText</span><span class="p">,</span> <span class="n">preFilledData</span><span class="p">,</span> <span class="n">customFields</span><span class="p">,</span> <span class="n">logStats</span> <span class="k">in</span>
+        <span class="c1">// Custom report submission logic</span>
+        <span class="kt">MyBugReportAPI</span><span class="o">.</span><span class="nf">submit</span><span class="p">(</span>
+            <span class="nv">description</span><span class="p">:</span> <span class="n">issueText</span><span class="p">,</span>
+            <span class="nv">deviceInfo</span><span class="p">:</span> <span class="n">preFilledData</span><span class="p">,</span>
+            <span class="nv">additionalFields</span><span class="p">:</span> <span class="n">customFields</span><span class="p">,</span>
+            <span class="nv">logInfo</span><span class="p">:</span> <span class="n">logStats</span>
+        <span class="p">)</span>
+    <span class="p">},</span>
+    <span class="nv">sendButtonText</span><span class="p">:</span> <span class="s">"Submit Report"</span>
+<span class="p">)</span>
+</code></pre>
+<h2 id='important' class='heading'>Important</h2>
+
+<p>The <code>sendAction</code> closure is required for the reporter view to function properly.
+There is no default send report implementation - you must provide your own custom
+action to handle report submission.</p>
+<h2 id='topics' class='heading'>Topics</h2>
+<h3 id='creating-a-configuration' class='heading'>Creating a Configuration</h3>
+
+<ul>
+<li><code>init(navigationBarTitle:bgSectionHeader:bgSectionFooter:bgPlaceholderText:showPrefilledDataSection:sendPreFilledData:preFilledDataSectionHeader:preFilledDataSectionFooter:preFilledData:preFilledDataComponentBuilder:customFields:customFieldsSectionHeader:customFieldsSectionFooter:showLogFilesInformation:logFilesInformationSectionHeader:logFilesInformationSectionFooter:logFilesInformationComponentBuilder:sendAction:sendButtonText:snapshotObjects:includeAppVersion:includeDeviceOS:includeDeviceModel:)</code></li>
+</ul>
+<h3 id='navigation-configuration' class='heading'>Navigation Configuration</h3>
+
+<ul>
+<li><code>navigationBarTitle</code></li>
+</ul>
+<h3 id='bug-description-section' class='heading'>Bug Description Section</h3>
+
+<ul>
+<li><code>bgSectionHeader</code></li>
+<li><code>bgSectionFooter</code></li>
+<li><code>bgPlaceholderText</code></li>
+</ul>
+<h3 id='pre-filled-data-section' class='heading'>Pre-filled Data Section</h3>
+
+<ul>
+<li><code>showPrefilledDataSection</code></li>
+<li><code>sendPreFilledData</code></li>
+<li><code>preFilledDataSectionHeader</code></li>
+<li><code>preFilledDataSectionFooter</code></li>
+<li><code>preFilledData</code></li>
+<li><code>preFilledDataComponentBuilder</code></li>
+</ul>
+<h3 id='custom-form-fields' class='heading'>Custom Form Fields</h3>
+
+<ul>
+<li><code>customFields</code></li>
+<li><code>customFieldsSectionHeader</code></li>
+<li><code>customFieldsSectionFooter</code></li>
+</ul>
+<h3 id='log-files-information' class='heading'>Log Files Information</h3>
+
+<ul>
+<li><code>showLogFilesInformation</code></li>
+<li><code>logFilesInformationSectionHeader</code></li>
+<li><code>logFilesInformationSectionFooter</code></li>
+<li><code>logFilesInformationComponentBuilder</code></li>
+</ul>
+<h3 id='send-report-configuration' class='heading'>Send Report Configuration</h3>
+
+<ul>
+<li><code>sendAction</code></li>
+<li><code>sendButtonText</code></li>
+<li><code>snapshotObjects</code></li>
+</ul>
+<h3 id='data-retrieval' class='heading'>Data Retrieval</h3>
+
+<ul>
+<li><code>getCustomFieldValues()</code></li>
+</ul>
+
+          </div>
+        </section>
+
+        <section class="section">
+          <div class="section-content">
+            <div class="task-group">
+              <ul class="item-container">
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:14SimpleLoggerUI25ReporterViewConfigurationC18navigationBarTitleSSvp"></a>
+                    <a name="//apple_ref/swift/Property/navigationBarTitle" class="dashAnchor"></a>
+                    <a class="token" href="#/s:14SimpleLoggerUI25ReporterViewConfigurationC18navigationBarTitleSSvp">navigationBarTitle</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>The title displayed in the navigation bar of the reporter view.</p>
+
+<p>This text appears at the top of the bug reporting interface and should clearly
+indicate the purpose of the view to users.</p>
+<h2 id='default-value' class='heading'>Default Value</h2>
+<pre class="highlight swift"><code><span class="s">"Report a Issue"</span>
+</code></pre>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">@MainActor</span>
+<span class="kd">public</span> <span class="k">var</span> <span class="nv">navigationBarTitle</span><span class="p">:</span> <span class="kt">String</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+              </ul>
+            </div>
+            <div class="task-group">
+              <div class="task-name-container">
+                <a name="/Bug%20Description%20Section"></a>
+                <a name="//apple_ref/swift/Section/Bug Description Section" class="dashAnchor"></a>
+                <div class="section-name-container">
+                  <a class="section-name-link" href="#/Bug%20Description%20Section"></a>
+                  <h3 class="section-name"><span>Bug Description Section</span>
+</h3>
+                </div>
+              </div>
+              <ul class="item-container">
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:14SimpleLoggerUI25ReporterViewConfigurationC15bgSectionHeaderSSvp"></a>
+                    <a name="//apple_ref/swift/Property/bgSectionHeader" class="dashAnchor"></a>
+                    <a class="token" href="#/s:14SimpleLoggerUI25ReporterViewConfigurationC15bgSectionHeaderSSvp">bgSectionHeader</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>The header text for the bug description section.</p>
+
+<p>This text appears above the main text input area where users describe their issue.
+It should prompt users to provide detailed information about the problem they&rsquo;re experiencing.</p>
+<h2 id='default-value' class='heading'>Default Value</h2>
+<pre class="highlight swift"><code><span class="s">"Describe the issue"</span>
+</code></pre>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">@MainActor</span>
+<span class="kd">public</span> <span class="k">var</span> <span class="nv">bgSectionHeader</span><span class="p">:</span> <span class="kt">String</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:14SimpleLoggerUI25ReporterViewConfigurationC15bgSectionFooterSSvp"></a>
+                    <a name="//apple_ref/swift/Property/bgSectionFooter" class="dashAnchor"></a>
+                    <a class="token" href="#/s:14SimpleLoggerUI25ReporterViewConfigurationC15bgSectionFooterSSvp">bgSectionFooter</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>The footer text for the bug description section.</p>
+
+<p>This explanatory text appears below the section header to provide additional guidance
+to users about what kind of information they should include in their bug report.</p>
+<h2 id='default-value' class='heading'>Default Value</h2>
+<pre class="highlight swift"><code><span class="s">"Please provide a detailed description of the issue you are experiencing."</span>
+</code></pre>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">@MainActor</span>
+<span class="kd">public</span> <span class="k">var</span> <span class="nv">bgSectionFooter</span><span class="p">:</span> <span class="kt">String</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:14SimpleLoggerUI25ReporterViewConfigurationC17bgPlaceholderTextSSvp"></a>
+                    <a name="//apple_ref/swift/Property/bgPlaceholderText" class="dashAnchor"></a>
+                    <a class="token" href="#/s:14SimpleLoggerUI25ReporterViewConfigurationC17bgPlaceholderTextSSvp">bgPlaceholderText</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>The placeholder text displayed in the bug description text field.</p>
+
+<p>This text appears inside the text input field when it&rsquo;s empty, providing a hint
+about what users should enter. It disappears when the user starts typing.</p>
+<h2 id='default-value' class='heading'>Default Value</h2>
+<pre class="highlight swift"><code><span class="s">"Bug description (optional)"</span>
+</code></pre>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">@MainActor</span>
+<span class="kd">public</span> <span class="k">var</span> <span class="nv">bgPlaceholderText</span><span class="p">:</span> <span class="kt">String</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+              </ul>
+            </div>
+            <div class="task-group">
+              <div class="task-name-container">
+                <a name="/Auto%20Included%20Data%20%28this%20data%20is%20appended%20but%20not%20editable%20by%20the%20user%29"></a>
+                <a name="//apple_ref/swift/Section/Auto Included Data (this data is appended but not editable by the user)" class="dashAnchor"></a>
+                <div class="section-name-container">
+                  <a class="section-name-link" href="#/Auto%20Included%20Data%20%28this%20data%20is%20appended%20but%20not%20editable%20by%20the%20user%29"></a>
+                  <h3 class="section-name"><span>Auto Included Data (this data is appended but not editable by the user)</span>
+</h3>
+                </div>
+              </div>
+              <ul class="item-container">
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:14SimpleLoggerUI25ReporterViewConfigurationC24showPrefilledDataSectionSbvp"></a>
+                    <a name="//apple_ref/swift/Property/showPrefilledDataSection" class="dashAnchor"></a>
+                    <a class="token" href="#/s:14SimpleLoggerUI25ReporterViewConfigurationC24showPrefilledDataSectionSbvp">showPrefilledDataSection</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Controls whether the pre-filled data section is visible to users.</p>
+
+<p>When <code>true</code>, users can see the automatically collected device and app information
+in a dedicated section. When <code>false</code>, this section is hidden from view, though
+the data may still be included in the report based on <code><a href="../Classes/ReporterViewConfiguration.html#/s:14SimpleLoggerUI25ReporterViewConfigurationC17sendPreFilledDataSbvp">sendPreFilledData</a></code>.</p>
+<h2 id='default-value' class='heading'>Default Value</h2>
+<pre class="highlight swift"><code><span class="kc">true</span>
+</code></pre>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">@MainActor</span>
+<span class="kd">public</span> <span class="k">var</span> <span class="nv">showPrefilledDataSection</span><span class="p">:</span> <span class="kt">Bool</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:14SimpleLoggerUI25ReporterViewConfigurationC17sendPreFilledDataSbvp"></a>
+                    <a name="//apple_ref/swift/Property/sendPreFilledData" class="dashAnchor"></a>
+                    <a class="token" href="#/s:14SimpleLoggerUI25ReporterViewConfigurationC17sendPreFilledDataSbvp">sendPreFilledData</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Controls whether pre-filled data is included in the bug report submission.</p>
+
+<p>When <code>true</code>, the automatically collected information (device model, OS version, app version)
+is included when the report is submitted. When <code>false</code>, only user-entered data is sent.</p>
+<h2 id='default-value' class='heading'>Default Value</h2>
+<pre class="highlight swift"><code><span class="kc">true</span>
+</code></pre>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">@MainActor</span>
+<span class="kd">public</span> <span class="k">var</span> <span class="nv">sendPreFilledData</span><span class="p">:</span> <span class="kt">Bool</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:14SimpleLoggerUI25ReporterViewConfigurationC26preFilledDataSectionHeaderSSvp"></a>
+                    <a name="//apple_ref/swift/Property/preFilledDataSectionHeader" class="dashAnchor"></a>
+                    <a class="token" href="#/s:14SimpleLoggerUI25ReporterViewConfigurationC26preFilledDataSectionHeaderSSvp">preFilledDataSectionHeader</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>The header text for the pre-filled data section.</p>
+
+<p>This text appears above the list of automatically collected device and app information.
+It should clearly identify what type of information is being displayed.</p>
+<h2 id='default-value' class='heading'>Default Value</h2>
+<pre class="highlight swift"><code><span class="s">"Information"</span>
+</code></pre>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">@MainActor</span>
+<span class="kd">public</span> <span class="k">var</span> <span class="nv">preFilledDataSectionHeader</span><span class="p">:</span> <span class="kt">String</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:14SimpleLoggerUI25ReporterViewConfigurationC26preFilledDataSectionFooterSSvp"></a>
+                    <a name="//apple_ref/swift/Property/preFilledDataSectionFooter" class="dashAnchor"></a>
+                    <a class="token" href="#/s:14SimpleLoggerUI25ReporterViewConfigurationC26preFilledDataSectionFooterSSvp">preFilledDataSectionFooter</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>The footer text for the pre-filled data section.</p>
+
+<p>This explanatory text appears below the pre-filled data to inform users that
+this information will be automatically included in their bug report.</p>
+<h2 id='default-value' class='heading'>Default Value</h2>
+<pre class="highlight swift"><code><span class="s">"The information above is automatically included in the report."</span>
+</code></pre>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">@MainActor</span>
+<span class="kd">public</span> <span class="k">var</span> <span class="nv">preFilledDataSectionFooter</span><span class="p">:</span> <span class="kt">String</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:14SimpleLoggerUI25ReporterViewConfigurationC13preFilledDataSDyS2SGvp"></a>
+                    <a name="//apple_ref/swift/Property/preFilledData" class="dashAnchor"></a>
+                    <a class="token" href="#/s:14SimpleLoggerUI25ReporterViewConfigurationC13preFilledDataSDyS2SGvp">preFilledData</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>A dictionary containing key-value pairs of pre-filled information.</p>
+
+<p>This dictionary stores automatically collected device and app information that
+can be included in bug reports. Keys typically include &ldquo;App Version&rdquo;, &ldquo;Device Model&rdquo;,
+and &ldquo;OS Version&rdquo;, but can be customized as needed.</p>
+<h2 id='example' class='heading'>Example</h2>
+<pre class="highlight swift"><code><span class="p">[</span>
+    <span class="s">"App Version"</span><span class="p">:</span> <span class="s">"1.2.3"</span><span class="p">,</span>
+    <span class="s">"Device Model"</span><span class="p">:</span> <span class="s">"iPhone 14 Pro"</span><span class="p">,</span>
+    <span class="s">"OS Version"</span><span class="p">:</span> <span class="s">"16.0"</span>
+<span class="p">]</span>
+</code></pre>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">@MainActor</span>
+<span class="kd">public</span> <span class="k">var</span> <span class="nv">preFilledData</span><span class="p">:</span> <span class="p">[</span><span class="kt">String</span> <span class="p">:</span> <span class="kt">String</span><span class="p">]</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:14SimpleLoggerUI25ReporterViewConfigurationC29preFilledDataComponentBuildery05SwiftC003AnyE0VSS_SStcvp"></a>
+                    <a name="//apple_ref/swift/Property/preFilledDataComponentBuilder" class="dashAnchor"></a>
+                    <a class="token" href="#/s:14SimpleLoggerUI25ReporterViewConfigurationC29preFilledDataComponentBuildery05SwiftC003AnyE0VSS_SStcvp">preFilledDataComponentBuilder</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>A closure that creates the visual representation for each pre-filled data item.</p>
+
+<p>This builder function is called for each key-value pair in <code><a href="../Classes/ReporterViewConfiguration.html#/s:14SimpleLoggerUI25ReporterViewConfigurationC13preFilledDataSDyS2SGvp">preFilledData</a></code> to
+create the SwiftUI view that displays the information. You can customize this
+to change how the pre-filled data appears in the interface.</p>
+<h2 id='default-implementation' class='heading'>Default Implementation</h2>
+<pre class="highlight swift"><code><span class="p">{</span> <span class="n">key</span><span class="p">,</span> <span class="n">value</span> <span class="k">in</span>
+    <span class="kt">AnyView</span><span class="p">(</span>
+        <span class="kt">PreFilledDataComponent</span> <span class="p">{</span>
+            <span class="kt">Text</span><span class="p">(</span><span class="n">key</span><span class="p">)</span>
+        <span class="p">}</span> <span class="nv">value</span><span class="p">:</span> <span class="p">{</span>
+            <span class="kt">Text</span><span class="p">(</span><span class="n">value</span><span class="p">)</span>
+                <span class="o">.</span><span class="nf">foregroundStyle</span><span class="p">(</span><span class="o">.</span><span class="n">secondary</span><span class="p">)</span>
+                <span class="o">.</span><span class="nf">multilineTextAlignment</span><span class="p">(</span><span class="o">.</span><span class="n">trailing</span><span class="p">)</span>
+        <span class="p">}</span>
+    <span class="p">)</span>
+<span class="p">}</span>
+</code></pre>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">@MainActor</span>
+<span class="kd">public</span> <span class="k">var</span> <span class="nv">preFilledDataComponentBuilder</span><span class="p">:</span> <span class="p">(</span><span class="kt">String</span><span class="p">,</span> <span class="kt">String</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kt">AnyView</span></code></pre>
+
+                        </div>
+                      </div>
+                      <div>
+                        <h4>Parameters</h4>
+                        <table class="graybox">
+                          <tbody>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>key</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>The key from the pre-filled data dictionary</p>
+                                </div>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>value</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>The corresponding value from the pre-filled data dictionary</p>
+                                </div>
+                              </td>
+                            </tr>
+                          </tbody>
+                        </table>
+                      </div>
+                      <div>
+                        <h4>Return Value</h4>
+                        <p>An <code>AnyView</code> containing the visual representation</p>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+              </ul>
+            </div>
+            <div class="task-group">
+              <div class="task-name-container">
+                <a name="/Custom%20Form%20Fields"></a>
+                <a name="//apple_ref/swift/Section/Custom Form Fields" class="dashAnchor"></a>
+                <div class="section-name-container">
+                  <a class="section-name-link" href="#/Custom%20Form%20Fields"></a>
+                  <h3 class="section-name"><span>Custom Form Fields</span>
+</h3>
+                </div>
+              </div>
+              <ul class="item-container">
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:14SimpleLoggerUI25ReporterViewConfigurationC12customFieldsSayAA22CustomFormFieldWrapperVGSgvp"></a>
+                    <a name="//apple_ref/swift/Property/customFields" class="dashAnchor"></a>
+                    <a class="token" href="#/s:14SimpleLoggerUI25ReporterViewConfigurationC12customFieldsSayAA22CustomFormFieldWrapperVGSgvp">customFields</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>An optional array of custom form field wrappers for additional user input.</p>
+
+<p>Use this property to add custom input fields to the bug report form. Each field
+should be wrapped in a <code><a href="../Structs/CustomFormFieldWrapper.html">CustomFormFieldWrapper</a></code> to provide consistent access
+to field keys and values.</p>
+
+<p>When <code>nil</code>, no custom fields section is displayed. When populated, the fields
+are rendered in their own section with the configured headers and footers.</p>
+<h2 id='example' class='heading'>Example</h2>
+<pre class="highlight swift"><code><span class="k">let</span> <span class="nv">emailField</span> <span class="o">=</span> <span class="kt">EmailFormField</span><span class="p">()</span>
+<span class="k">let</span> <span class="nv">phoneField</span> <span class="o">=</span> <span class="kt">PhoneFormField</span><span class="p">()</span>
+<span class="n">customFields</span> <span class="o">=</span> <span class="p">[</span>
+    <span class="kt">CustomFormFieldWrapper</span><span class="p">(</span><span class="nv">field</span><span class="p">:</span> <span class="n">emailField</span><span class="p">),</span>
+    <span class="kt">CustomFormFieldWrapper</span><span class="p">(</span><span class="nv">field</span><span class="p">:</span> <span class="n">phoneField</span><span class="p">)</span>
+<span class="p">]</span>
+</code></pre>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">@MainActor</span>
+<span class="kd">public</span> <span class="k">var</span> <span class="nv">customFields</span><span class="p">:</span> <span class="p">[</span><span class="kt"><a href="../Structs/CustomFormFieldWrapper.html">CustomFormFieldWrapper</a></span><span class="p">]?</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:14SimpleLoggerUI25ReporterViewConfigurationC25customFieldsSectionHeaderSSvp"></a>
+                    <a name="//apple_ref/swift/Property/customFieldsSectionHeader" class="dashAnchor"></a>
+                    <a class="token" href="#/s:14SimpleLoggerUI25ReporterViewConfigurationC25customFieldsSectionHeaderSSvp">customFieldsSectionHeader</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>The header text for the custom form fields section.</p>
+
+<p>This text appears above any custom form fields when <code><a href="../Classes/ReporterViewConfiguration.html#/s:14SimpleLoggerUI25ReporterViewConfigurationC12customFieldsSayAA22CustomFormFieldWrapperVGSgvp">customFields</a></code> is not empty.
+It should clearly indicate what additional information is being requested.</p>
+<h2 id='default-value' class='heading'>Default Value</h2>
+<pre class="highlight swift"><code><span class="s">"Additional Information"</span>
+</code></pre>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">@MainActor</span>
+<span class="kd">public</span> <span class="k">var</span> <span class="nv">customFieldsSectionHeader</span><span class="p">:</span> <span class="kt">String</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:14SimpleLoggerUI25ReporterViewConfigurationC25customFieldsSectionFooterSSvp"></a>
+                    <a name="//apple_ref/swift/Property/customFieldsSectionFooter" class="dashAnchor"></a>
+                    <a class="token" href="#/s:14SimpleLoggerUI25ReporterViewConfigurationC25customFieldsSectionFooterSSvp">customFieldsSectionFooter</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>The footer text for the custom form fields section.</p>
+
+<p>This explanatory text appears below the custom fields section header to provide
+guidance about filling in the additional fields.</p>
+<h2 id='default-value' class='heading'>Default Value</h2>
+<pre class="highlight swift"><code><span class="s">"Please fill in the fields below."</span>
+</code></pre>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">@MainActor</span>
+<span class="kd">public</span> <span class="k">var</span> <span class="nv">customFieldsSectionFooter</span><span class="p">:</span> <span class="kt">String</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+              </ul>
+            </div>
+            <div class="task-group">
+              <div class="task-name-container">
+                <a name="/Log%20Information"></a>
+                <a name="//apple_ref/swift/Section/Log Information" class="dashAnchor"></a>
+                <div class="section-name-container">
+                  <a class="section-name-link" href="#/Log%20Information"></a>
+                  <h3 class="section-name"><span>Log Information</span>
+</h3>
+                </div>
+              </div>
+              <ul class="item-container">
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:14SimpleLoggerUI25ReporterViewConfigurationC23showLogFilesInformationSbvp"></a>
+                    <a name="//apple_ref/swift/Property/showLogFilesInformation" class="dashAnchor"></a>
+                    <a class="token" href="#/s:14SimpleLoggerUI25ReporterViewConfigurationC23showLogFilesInformationSbvp">showLogFilesInformation</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Controls whether the log files information section is visible to users.</p>
+
+<p>When <code>true</code>, users can see information about log files that will be included
+in their bug report. When <code>false</code>, this section is hidden from view.
+This section typically displays details like log file names, sizes, and dates.</p>
+<h2 id='default-value' class='heading'>Default Value</h2>
+<pre class="highlight swift"><code><span class="kc">true</span>
+</code></pre>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">@MainActor</span>
+<span class="kd">public</span> <span class="k">var</span> <span class="nv">showLogFilesInformation</span><span class="p">:</span> <span class="kt">Bool</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:14SimpleLoggerUI25ReporterViewConfigurationC32logFilesInformationSectionHeaderSSvp"></a>
+                    <a name="//apple_ref/swift/Property/logFilesInformationSectionHeader" class="dashAnchor"></a>
+                    <a class="token" href="#/s:14SimpleLoggerUI25ReporterViewConfigurationC32logFilesInformationSectionHeaderSSvp">logFilesInformationSectionHeader</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>The header text for the log files information section.</p>
+
+<p>This text appears above the list of log files that will be included in the bug report.
+It should clearly identify what type of log information is being displayed.</p>
+<h2 id='default-value' class='heading'>Default Value</h2>
+<pre class="highlight swift"><code><span class="s">"Log Files"</span>
+</code></pre>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">@MainActor</span>
+<span class="kd">public</span> <span class="k">var</span> <span class="nv">logFilesInformationSectionHeader</span><span class="p">:</span> <span class="kt">String</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:14SimpleLoggerUI25ReporterViewConfigurationC32logFilesInformationSectionFooterSSvp"></a>
+                    <a name="//apple_ref/swift/Property/logFilesInformationSectionFooter" class="dashAnchor"></a>
+                    <a class="token" href="#/s:14SimpleLoggerUI25ReporterViewConfigurationC32logFilesInformationSectionFooterSSvp">logFilesInformationSectionFooter</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>The footer text for the log files information section.</p>
+
+<p>This explanatory text appears below the log files information to inform users
+that these log files will be automatically included in their bug report for
+debugging purposes.</p>
+<h2 id='default-value' class='heading'>Default Value</h2>
+<pre class="highlight swift"><code><span class="s">"The log files above are automatically included in the report."</span>
+</code></pre>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">@MainActor</span>
+<span class="kd">public</span> <span class="k">var</span> <span class="nv">logFilesInformationSectionFooter</span><span class="p">:</span> <span class="kt">String</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+              </ul>
+            </div>
+            <div class="task-group">
+              <div class="task-name-container">
+                <a name="/Send%20Action"></a>
+                <a name="//apple_ref/swift/Section/Send Action" class="dashAnchor"></a>
+                <div class="section-name-container">
+                  <a class="section-name-link" href="#/Send%20Action"></a>
+                  <h3 class="section-name"><span>Send Action</span>
+</h3>
+                </div>
+              </div>
+              <ul class="item-container">
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:14SimpleLoggerUI25ReporterViewConfigurationC10sendActionySS_SDyS2SGAESS_10Foundation4DataVSgttcSgvp"></a>
+                    <a name="//apple_ref/swift/Property/sendAction" class="dashAnchor"></a>
+                    <a class="token" href="#/s:14SimpleLoggerUI25ReporterViewConfigurationC10sendActionySS_SDyS2SGAESS_10Foundation4DataVSgttcSgvp">sendAction</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>A custom action to be executed when the send report button is tapped.</p>
+
+<p>This closure is called with all the collected report data when the user taps 
+the &ldquo;Send Report&rdquo; button. You must provide this closure to handle report submission,
+as there is no default send report implementation.</p>
+
+<p>The closure receives the following data:</p>
+
+<ul>
+<li>Issue description text entered by the user</li>
+<li>Pre-filled data dictionary (if enabled)</li>
+<li>Custom field values dictionary</li>
+<li>Log file information (summary and data)</li>
+</ul>
+<h2 id='important' class='heading'>Important</h2>
+
+<p>This property is required for the reporter view to function properly. If no custom
+action is provided, the send button will execute without performing any report
+submission.</p>
+<h2 id='example' class='heading'>Example</h2>
+<pre class="highlight swift"><code><span class="n">config</span><span class="o">.</span><span class="n">sendAction</span> <span class="o">=</span> <span class="p">{</span> <span class="n">issueText</span><span class="p">,</span> <span class="n">preFilledData</span><span class="p">,</span> <span class="n">customFields</span><span class="p">,</span> <span class="n">logInfo</span> <span class="k">in</span>
+    <span class="c1">// Custom report submission logic</span>
+    <span class="nf">submitBugReport</span><span class="p">(</span>
+        <span class="nv">description</span><span class="p">:</span> <span class="n">issueText</span><span class="p">,</span>
+        <span class="nv">deviceInfo</span><span class="p">:</span> <span class="n">preFilledData</span><span class="p">,</span>
+        <span class="nv">additionalFields</span><span class="p">:</span> <span class="n">customFields</span><span class="p">,</span>
+        <span class="nv">logData</span><span class="p">:</span> <span class="n">logInfo</span>
+    <span class="p">)</span>
+<span class="p">}</span>
+</code></pre>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">@MainActor</span>
+<span class="kd">public</span> <span class="k">var</span> <span class="nv">sendAction</span><span class="p">:</span> <span class="p">((</span><span class="kt">String</span><span class="p">,</span> <span class="p">[</span><span class="kt">String</span> <span class="p">:</span> <span class="kt">String</span><span class="p">],</span> <span class="p">[</span><span class="kt">String</span> <span class="p">:</span> <span class="kt">String</span><span class="p">],</span> <span class="p">(</span><span class="kt">String</span><span class="p">,</span> <span class="kt">Data</span><span class="p">?))</span> <span class="o">-&gt;</span> <span class="kt">Void</span><span class="p">)?</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:14SimpleLoggerUI25ReporterViewConfigurationC14sendButtonTextSSvp"></a>
+                    <a name="//apple_ref/swift/Property/sendButtonText" class="dashAnchor"></a>
+                    <a class="token" href="#/s:14SimpleLoggerUI25ReporterViewConfigurationC14sendButtonTextSSvp">sendButtonText</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>The text displayed on the send report button in the navigation bar.</p>
+
+<p>This text appears on the trailing navigation bar button that users tap to
+submit their bug report.</p>
+<h2 id='default-value' class='heading'>Default Value</h2>
+<pre class="highlight swift"><code><span class="s">"Send"</span>
+</code></pre>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">@MainActor</span>
+<span class="kd">public</span> <span class="k">var</span> <span class="nv">sendButtonText</span><span class="p">:</span> <span class="kt">String</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:14SimpleLoggerUI25ReporterViewConfigurationC15snapshotObjectsSaySe_SEpGSgvp"></a>
+                    <a name="//apple_ref/swift/Property/snapshotObjects" class="dashAnchor"></a>
+                    <a class="token" href="#/s:14SimpleLoggerUI25ReporterViewConfigurationC15snapshotObjectsSaySe_SEpGSgvp">snapshotObjects</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>An optional array of objects to automatically snapshot when a bug report is sent.</p>
+
+<p>When provided, these objects will be automatically captured using the SimpleLogger&rsquo;s
+<code>snapshot()</code> function before the bug report is submitted. This allows developers to
+include current application state and configuration data with every bug report.</p>
+
+<p>All objects in the array must conform to <code>Codable</code> to be serialized and logged.
+The snapshots are taken immediately before calling the send action, ensuring the
+most current state is captured.</p>
+<h2 id='use-cases' class='heading'>Use Cases</h2>
+
+<ul>
+<li><strong>Application State</strong>: Include current app configuration and user session data</li>
+<li><strong>Settings Manager</strong>: Capture user preferences and configuration settings</li>
+<li><strong>Network State</strong>: Include current API configuration and authentication state</li>
+<li><strong>Custom Managers</strong>: Snapshot any custom application managers or controllers</li>
+</ul>
+<h2 id='example' class='heading'>Example</h2>
+<pre class="highlight swift"><code><span class="n">config</span><span class="o">.</span><span class="n">snapshotObjects</span> <span class="o">=</span> <span class="p">[</span>
+    <span class="kt">AppStateManager</span><span class="o">.</span><span class="n">shared</span><span class="p">,</span>
+    <span class="kt">UserSettingsManager</span><span class="o">.</span><span class="n">shared</span><span class="p">,</span>
+    <span class="kt">NetworkConfigurationManager</span><span class="o">.</span><span class="n">shared</span><span class="p">,</span>
+    <span class="kt">LocationManager</span><span class="o">.</span><span class="n">shared</span>
+<span class="p">]</span>
+</code></pre>
+<div class="aside aside-note">
+    <p class="aside-title">Note</p>
+    Snapshots are logged with debug level and synthetic source information
+
+</div><div class="aside aside-important">
+    <p class="aside-title">Important</p>
+    All objects must conform to <code>Codable</code> for serialization
+
+</div>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">@MainActor</span>
+<span class="kd">public</span> <span class="k">var</span> <span class="nv">snapshotObjects</span><span class="p">:</span> <span class="p">[</span><span class="kd">any</span> <span class="kt">Codable</span><span class="p">]?</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+              </ul>
+            </div>
+            <div class="task-group">
+              <div class="task-name-container">
+                <a name="/Form"></a>
+                <a name="//apple_ref/swift/Section/Form" class="dashAnchor"></a>
+                <div class="section-name-container">
+                  <a class="section-name-link" href="#/Form"></a>
+                  <h3 class="section-name"><span>Form</span>
+</h3>
+                </div>
+              </div>
+              <ul class="item-container">
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:14SimpleLoggerUI25ReporterViewConfigurationC18navigationBarTitle15bgSectionHeader0jK6Footer0J15PlaceholderText017showPrefilledDataK0013sendPreFilledR003preurkL00vurkM00vuR00vuR16ComponentBuilder12customFields0yzkL00yzkM00P19LogFilesInformation019logFilesInformationkL0019logFilesInformationkM00S6Action0s6ButtonO015snapshotObjects17includeAppVersion15includeDeviceOS18includeDeviceModelACSS_S3SS2bS2SSDyS2SG05SwiftC003AnyE0VSS_SStcSayAA22CustomFormFieldWrapperVGSgS2SSbS2SySS_A2ZSS_10Foundation0R0VSgttcSgSSSaySe_SEpGSgS3btcfc"></a>
+                    <a name="//apple_ref/swift/Method/init(navigationBarTitle:bgSectionHeader:bgSectionFooter:bgPlaceholderText:showPrefilledDataSection:sendPreFilledData:preFilledDataSectionHeader:preFilledDataSectionFooter:preFilledData:preFilledDataComponentBuilder:customFields:customFieldsSectionHeader:customFieldsSectionFooter:showLogFilesInformation:logFilesInformationSectionHeader:logFilesInformationSectionFooter:sendAction:sendButtonText:snapshotObjects:includeAppVersion:includeDeviceOS:includeDeviceModel:)" class="dashAnchor"></a>
+                    <a class="token" href="#/s:14SimpleLoggerUI25ReporterViewConfigurationC18navigationBarTitle15bgSectionHeader0jK6Footer0J15PlaceholderText017showPrefilledDataK0013sendPreFilledR003preurkL00vurkM00vuR00vuR16ComponentBuilder12customFields0yzkL00yzkM00P19LogFilesInformation019logFilesInformationkL0019logFilesInformationkM00S6Action0s6ButtonO015snapshotObjects17includeAppVersion15includeDeviceOS18includeDeviceModelACSS_S3SS2bS2SSDyS2SG05SwiftC003AnyE0VSS_SStcSayAA22CustomFormFieldWrapperVGSgS2SSbS2SySS_A2ZSS_10Foundation0R0VSgttcSgSSSaySe_SEpGSgS3btcfc">init(navigationBarTitle:<wbr>bgSectionHeader:<wbr>bgSectionFooter:<wbr>bgPlaceholderText:<wbr>showPrefilledDataSection:<wbr>sendPreFilledData:<wbr>preFilledDataSectionHeader:<wbr>preFilledDataSectionFooter:<wbr>preFilledData:<wbr>preFilledDataComponentBuilder:<wbr>customFields:<wbr>customFieldsSectionHeader:<wbr>customFieldsSectionFooter:<wbr>showLogFilesInformation:<wbr>logFilesInformationSectionHeader:<wbr>logFilesInformationSectionFooter:<wbr>sendAction:<wbr>sendButtonText:<wbr>snapshotObjects:<wbr>includeAppVersion:<wbr>includeDeviceOS:<wbr>includeDeviceModel:<wbr>)</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Creates a new reporter view configuration with the specified options.</p>
+
+<p>This initializer provides comprehensive customization of the bug reporting interface,
+including text content, behavior settings, custom fields, automatic data collection,
+and log files information display. All parameters have sensible defaults, so you only
+need to specify the options you want to customize.</p>
+<h2 id='automatic-data-collection' class='heading'>Automatic Data Collection</h2>
+
+<p>When the corresponding include parameters are <code>true</code>, the following information is automatically collected:</p>
+
+<ul>
+<li><strong>App Version</strong>: Retrieved from the main bundle&rsquo;s <code>CFBundleShortVersionString</code></li>
+<li><strong>Device Model</strong>: Retrieved using DeviceKit (if available)</li>
+<li><strong>OS Version</strong>: Retrieved from <code>UIDevice.current.systemVersion</code> (if UIKit is available)</li>
+</ul>
+<h2 id='example' class='heading'>Example</h2>
+<pre class="highlight swift"><code><span class="k">let</span> <span class="nv">config</span> <span class="o">=</span> <span class="kt">ReporterViewConfiguration</span><span class="p">(</span>
+    <span class="nv">navigationBarTitle</span><span class="p">:</span> <span class="s">"Report Problem"</span><span class="p">,</span>
+    <span class="nv">bgSectionHeader</span><span class="p">:</span> <span class="s">"What went wrong?"</span><span class="p">,</span>
+    <span class="nv">showPrefilledDataSection</span><span class="p">:</span> <span class="kc">true</span><span class="p">,</span>
+    <span class="nv">showLogFilesInformation</span><span class="p">:</span> <span class="kc">true</span><span class="p">,</span>
+    <span class="nv">includeAppVersion</span><span class="p">:</span> <span class="kc">true</span><span class="p">,</span>
+    <span class="nv">includeDeviceModel</span><span class="p">:</span> <span class="kc">false</span><span class="p">,</span>
+    <span class="nv">customFields</span><span class="p">:</span> <span class="p">[</span>
+        <span class="kt">CustomFormFieldWrapper</span><span class="p">(</span><span class="nv">field</span><span class="p">:</span> <span class="kt">EmailField</span><span class="p">()),</span>
+        <span class="kt">CustomFormFieldWrapper</span><span class="p">(</span><span class="nv">field</span><span class="p">:</span> <span class="kt">CategoryField</span><span class="p">())</span>
+    <span class="p">]</span>
+<span class="p">)</span>
+</code></pre>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">@MainActor</span>
+<span class="kd">public</span> <span class="nf">init</span><span class="p">(</span>
+    <span class="nv">navigationBarTitle</span><span class="p">:</span> <span class="kt">String</span> <span class="o">=</span> <span class="s">"Report a Issue"</span><span class="p">,</span>
+    <span class="nv">bgSectionHeader</span><span class="p">:</span> <span class="kt">String</span> <span class="o">=</span> <span class="s">"Describe the issue"</span><span class="p">,</span>
+    <span class="nv">bgSectionFooter</span><span class="p">:</span> <span class="kt">String</span> <span class="o">=</span> <span class="s">"Please provide a detailed description of the issue you are experiencing."</span><span class="p">,</span>
+    <span class="nv">bgPlaceholderText</span><span class="p">:</span> <span class="kt">String</span> <span class="o">=</span> <span class="s">"Bug description (optional)"</span><span class="p">,</span>
+    <span class="nv">showPrefilledDataSection</span><span class="p">:</span> <span class="kt">Bool</span> <span class="o">=</span> <span class="kc">true</span><span class="p">,</span>
+    <span class="nv">sendPreFilledData</span><span class="p">:</span> <span class="kt">Bool</span> <span class="o">=</span> <span class="kc">true</span><span class="p">,</span>
+    <span class="nv">preFilledDataSectionHeader</span><span class="p">:</span> <span class="kt">String</span> <span class="o">=</span> <span class="s">"Information"</span><span class="p">,</span>
+    <span class="nv">preFilledDataSectionFooter</span><span class="p">:</span> <span class="kt">String</span> <span class="o">=</span> <span class="s">"The information above is automatically included in the report."</span><span class="p">,</span>
+    <span class="nv">preFilledData</span><span class="p">:</span> <span class="p">[</span><span class="kt">String</span><span class="p">:</span> <span class="kt">String</span><span class="p">]</span> <span class="o">=</span> <span class="p">[:],</span>
+    <span class="nv">preFilledDataComponentBuilder</span><span class="p">:</span> <span class="kd">@escaping</span> <span class="p">(</span><span class="kt">String</span><span class="p">,</span> <span class="kt">String</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kt">AnyView</span> <span class="o">=</span> <span class="p">{</span> <span class="n">key</span><span class="p">,</span> <span class="n">value</span> <span class="k">in</span>
+        <span class="kt">AnyView</span><span class="p">(</span>
+            <span class="kt"><a href="../Structs/PreFilledDataComponent.html">PreFilledDataComponent</a></span> <span class="p">{</span>
+                <span class="kt">Text</span><span class="p">(</span><span class="n">key</span><span class="p">)</span>
+            <span class="p">}</span> <span class="nv">value</span><span class="p">:</span> <span class="p">{</span>
+                <span class="kt">Text</span><span class="p">(</span><span class="n">value</span><span class="p">)</span>
+                    <span class="o">.</span><span class="nf">foregroundStyle</span><span class="p">(</span><span class="o">.</span><span class="n">secondary</span><span class="p">)</span>
+                    <span class="o">.</span><span class="nf">multilineTextAlignment</span><span class="p">(</span><span class="o">.</span><span class="n">trailing</span><span class="p">)</span>
+            <span class="p">}</span>
+        <span class="p">)</span>
+    <span class="p">},</span>
+    <span class="nv">customFields</span><span class="p">:</span> <span class="p">[</span><span class="kt"><a href="../Structs/CustomFormFieldWrapper.html">CustomFormFieldWrapper</a></span><span class="p">]?</span> <span class="o">=</span> <span class="kc">nil</span><span class="p">,</span>
+    <span class="nv">customFieldsSectionHeader</span><span class="p">:</span> <span class="kt">String</span> <span class="o">=</span> <span class="s">"Additional Information"</span><span class="p">,</span>
+    <span class="nv">customFieldsSectionFooter</span><span class="p">:</span> <span class="kt">String</span> <span class="o">=</span> <span class="s">"Please fill in the fields below."</span><span class="p">,</span>
+    <span class="nv">showLogFilesInformation</span><span class="p">:</span> <span class="kt">Bool</span> <span class="o">=</span> <span class="kc">true</span><span class="p">,</span>
+    <span class="nv">logFilesInformationSectionHeader</span><span class="p">:</span> <span class="kt">String</span> <span class="o">=</span> <span class="s">"Log Files"</span><span class="p">,</span>
+    <span class="nv">logFilesInformationSectionFooter</span><span class="p">:</span> <span class="kt">String</span> <span class="o">=</span> <span class="s">"The log files above are automatically included in the report."</span><span class="p">,</span>
+    <span class="nv">sendAction</span><span class="p">:</span> <span class="p">((</span><span class="kt">String</span><span class="p">,</span> <span class="p">[</span><span class="kt">String</span><span class="p">:</span> <span class="kt">String</span><span class="p">],</span> <span class="p">[</span><span class="kt">String</span><span class="p">:</span> <span class="kt">String</span><span class="p">],</span> <span class="p">(</span><span class="kt">String</span><span class="p">,</span> <span class="kt">Data</span><span class="p">?))</span> <span class="o">-&gt;</span> <span class="kt">Void</span><span class="p">)?</span> <span class="o">=</span> <span class="kc">nil</span><span class="p">,</span>
+    <span class="nv">sendButtonText</span><span class="p">:</span> <span class="kt">String</span> <span class="o">=</span> <span class="s">"Send"</span><span class="p">,</span>
+    <span class="nv">snapshotObjects</span><span class="p">:</span> <span class="p">[</span><span class="kd">any</span> <span class="kt">Codable</span><span class="p">]?</span> <span class="o">=</span> <span class="kc">nil</span><span class="p">,</span>
+    <span class="nv">includeAppVersion</span><span class="p">:</span> <span class="kt">Bool</span> <span class="o">=</span> <span class="kc">true</span><span class="p">,</span>
+    <span class="nv">includeDeviceOS</span><span class="p">:</span> <span class="kt">Bool</span> <span class="o">=</span> <span class="kc">true</span><span class="p">,</span>
+    <span class="nv">includeDeviceModel</span><span class="p">:</span> <span class="kt">Bool</span> <span class="o">=</span> <span class="kc">true</span>
+<span class="p">)</span></code></pre>
+
+                        </div>
+                      </div>
+                      <div>
+                        <h4>Parameters</h4>
+                        <table class="graybox">
+                          <tbody>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>navigationBarTitle</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>The title for the navigation bar. Defaults to &ldquo;Report a Issue&rdquo;.</p>
+                                </div>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>bgSectionHeader</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>Header text for the bug description section. Defaults to &ldquo;Describe the issue&rdquo;.</p>
+                                </div>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>bgSectionFooter</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>Footer text for the bug description section. Defaults to helpful instruction text.</p>
+                                </div>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>bgPlaceholderText</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>Placeholder text for the description field. Defaults to &ldquo;Bug description (optional)&rdquo;.</p>
+                                </div>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>showPrefilledDataSection</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>Whether to show the pre-filled data section. Defaults to <code>true</code>.</p>
+                                </div>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>sendPreFilledData</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>Whether to include pre-filled data in submissions. Defaults to <code>true</code>.</p>
+                                </div>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>preFilledDataSectionHeader</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>Header for the pre-filled data section. Defaults to &ldquo;Information&rdquo;.</p>
+                                </div>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>preFilledDataSectionFooter</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>Footer for the pre-filled data section. Defaults to explanatory text.</p>
+                                </div>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>preFilledData</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>Initial pre-filled data dictionary. Defaults to empty, but may be populated based on other parameters.</p>
+                                </div>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>preFilledDataComponentBuilder</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>Builder closure for pre-filled data views. Defaults to using <code><a href="../Structs/PreFilledDataComponent.html">PreFilledDataComponent</a></code>.</p>
+                                </div>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>customFields</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>Optional array of custom form fields. Defaults to <code>nil</code>.</p>
+                                </div>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>customFieldsSectionHeader</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>Header for custom fields section. Defaults to &ldquo;Additional Information&rdquo;.</p>
+                                </div>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>customFieldsSectionFooter</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>Footer for custom fields section. Defaults to &ldquo;Please fill in the fields below.&rdquo;.</p>
+                                </div>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>showLogFilesInformation</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>Whether to show the log files information section. Defaults to <code>true</code>.</p>
+                                </div>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>logFilesInformationSectionHeader</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>Header for log files section. Defaults to &ldquo;Log Files&rdquo;.</p>
+                                </div>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>logFilesInformationSectionFooter</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>Footer for log files section. Defaults to explanatory text.</p>
+                                </div>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>includeAppVersion</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>Whether to automatically include app version. Defaults to <code>true</code>.</p>
+                                </div>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>includeDeviceOS</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>Whether to automatically include OS version. Defaults to <code>true</code>.</p>
+                                </div>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>includeDeviceModel</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>Whether to automatically include device model. Defaults to <code>true</code>.</p>
+                                </div>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>sendAction</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>Custom action to perform on report submission. Defaults to <code>nil</code>.</p>
+                                </div>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>sendButtonText</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>Text for the send report button. Defaults to &ldquo;Send&rdquo;.</p>
+                                </div>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>snapshotObjects</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>Array of objects to snapshot on send. Defaults to <code>nil</code>.</p>
+                                </div>
+                              </td>
+                            </tr>
+                          </tbody>
+                        </table>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:14SimpleLoggerUI25ReporterViewConfigurationC20getCustomFieldValuesSDyS2SGyF"></a>
+                    <a name="//apple_ref/swift/Method/getCustomFieldValues()" class="dashAnchor"></a>
+                    <a class="token" href="#/s:14SimpleLoggerUI25ReporterViewConfigurationC20getCustomFieldValuesSDyS2SGyF">getCustomFieldValues()</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Retrieves the current values from all custom form fields as a dictionary.</p>
+
+<p>This method collects the current state of all custom form fields and returns them
+as a dictionary where keys are the field identifiers and values are the current
+field values as strings.</p>
+<h2 id='usage' class='heading'>Usage</h2>
+<pre class="highlight swift"><code><span class="k">let</span> <span class="nv">values</span> <span class="o">=</span> <span class="n">config</span><span class="o">.</span><span class="nf">getCustomFieldValues</span><span class="p">()</span>
+<span class="nf">print</span><span class="p">(</span><span class="n">values</span><span class="p">)</span> <span class="c1">// ["email": "user@example.com", "category": "Bug"]</span>
+</code></pre>
+<h2 id='note' class='heading'>Note</h2>
+
+<p>This method only returns values from custom fields. Pre-filled data can be accessed
+directly through the <code><a href="../Classes/ReporterViewConfiguration.html#/s:14SimpleLoggerUI25ReporterViewConfigurationC13preFilledDataSDyS2SGvp">preFilledData</a></code> property.</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">@MainActor</span>
+<span class="kd">public</span> <span class="kd">func</span> <span class="nf">getCustomFieldValues</span><span class="p">()</span> <span class="o">-&gt;</span> <span class="p">[</span><span class="kt">String</span> <span class="p">:</span> <span class="kt">String</span><span class="p">]</span></code></pre>
+
+                        </div>
+                      </div>
+                      <div>
+                        <h4>Return Value</h4>
+                        <p>A dictionary mapping field keys to their current string values. Returns an empty dictionary if no custom fields are configured.</p>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+              </ul>
+            </div>
+          </div>
+        </section>
+
+      </article>
+    </div>
+    <section class="footer">
+      <p>&copy; 2025 <a class="link" href="" target="_blank" rel="external noopener"></a>. All rights reserved. (Last updated: 2025-09-14)</p>
+      <p>Generated by <a class="link" href="https://github.com/realm/jazzy" target="_blank" rel="external noopener">jazzy ♪♫ v0.15.3</a>, a <a class="link" href="https://realm.io" target="_blank" rel="external noopener">Realm</a> project.</p>
+    </section>
+  </body>
+</html>
